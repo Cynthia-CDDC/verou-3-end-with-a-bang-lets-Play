@@ -3,18 +3,41 @@
 //TODO: create array of imgages with character name, the twins next to each other
 const imagesCollection = [
     {
-        img: "./images/alice.jpg",
+        img: "./cynthia-images/alice.jpg",
         character: "Alice",
     },
     {
-        img: "./images/alice.jpg",
+        img: "./cynthia-images/alice.jpg",
         character: "Alice",
     },
     {
-        img: "./Knave-of-hearts.jpg",
+        img: "./cynthia-images/Knave-of-hearts.jpg",
         character: "Knave Of Hearts",
-    }
-
+    },
+    {
+        img: "./cynthia-images/Knave-of-hearts.jpg",
+        character: "Knave Of Hearts",
+    },
+    {
+        img: "./cynthia-images/red-queen.jpg",
+        character: "Red Queen",
+    },
+    {
+        img: "./cynthia-images/red-queen.jpg",
+        character: "Red Queen",
+    },
+    {
+        img: "./cynthia-images/tarrant-hightopp.jpg",
+        character: "Tarrant Hightopp",
+    },
+    {
+        img: "./cynthia-images/tarrant-hightopp.jpg",
+        character: "Tarrant Hightopp",
+    },
+    {
+        img: "./cynthia-images/white-queen.jpg",
+        character: "White Queen",
+    },
 ];
 //TODO: create shuffle for images
 //TODO: create card with img and name
