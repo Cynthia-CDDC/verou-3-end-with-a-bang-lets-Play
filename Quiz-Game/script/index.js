@@ -1,8 +1,11 @@
-const answer = document.getElementById("answer")
+const holder = document.getElementById("holder")
+
+
 
 const fetchUsers = async () => {
+
     try {
-        const res = await fetch('https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=boolean');
+        const res = await fetch('https://opentdb.com/api.php?amount=10&type=multiple');
         if (!res.ok) {
             throw new Error(res.status);
         }
@@ -10,12 +13,39 @@ const fetchUsers = async () => {
         console.log(data);
 
         // loop the questions
-        const question = data.results
-        for(let i = 0; i < question.length; i++){
-           console.log( question[i])
-           const p = document.createElement("P")
-           p.innerHTML = question[i].question
-           answer.appendChild(p)
+        const fullData = data.results
+        for(let i = 0; i < fullData.length; i++){
+           console.log( fullData[i])
+
+            // display Question
+            const questionP = document.createElement("P")
+            questionP.innerHTML = fullData[i].question
+            holder.appendChild(questionP)
+
+           // create input
+            const userInput = document.createElement("input")
+            userInput.type = "text"
+            userInput.value = ""
+            holder.appendChild(userInput)
+
+            // create button
+            const button = document.createElement("button")
+            button.innerHTML = "Submit"
+            holder.appendChild(button)
+
+            const answersBoolean = fullData[i].correct_answer
+
+            button.addEventListener('click', function checkAnswer(){
+                if(userInput.value === answersBoolean){
+                    console.log("Great Job")
+                }else{
+                    console.log("fail")
+                }
+            })
+            
+            
+            
+           
         }
     } catch (error) {
         console.log(error);
@@ -23,3 +53,5 @@ const fetchUsers = async () => {
 }
 
 fetchUsers();
+
+
