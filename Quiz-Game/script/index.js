@@ -1,3 +1,4 @@
+const answer = document.getElementById("answer")
 
 const fetchUsers = async () => {
     try {
@@ -7,6 +8,15 @@ const fetchUsers = async () => {
         }
         const data = await res.json();
         console.log(data);
+
+        // loop the questions
+        const question = data.results
+        for(let i = 0; i < question.length; i++){
+           console.log( question[i])
+           const p = document.createElement("P")
+           p.innerHTML = question[i].question
+           answer.appendChild(p)
+        }
     } catch (error) {
         console.log(error);
     }
