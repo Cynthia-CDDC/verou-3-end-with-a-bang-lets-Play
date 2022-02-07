@@ -1,6 +1,11 @@
 const holder = document.getElementById("holder")
+const sound1 = document.getElementById("sound1")
+const sound2 = document.getElementById("sound2")
+const sound3 = document.getElementById("sound3")
 
-
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 const fetchUsers = async () => {
 
@@ -33,20 +38,18 @@ const fetchUsers = async () => {
             button.innerHTML = "Submit"
             holder.appendChild(button)
 
-            const answersBoolean = fullData[i].correct_answer
-
-            button.addEventListener('click', function checkAnswer(){
-                if(userInput.value === answersBoolean){
-                    console.log("Great Job")
+            // Check answer function
+           button.addEventListener('click', function checkAnswer(){
+            userInputValue = userInput.value
+                if( userInputValue == fullData[i].correct_answer){
+                    console.log("success")
+                    sound1.play()
                 }else{
                     console.log("fail")
+                    sound2.play()
                 }
             })
-            
-            
-            
-           
-        }
+           }
     } catch (error) {
         console.log(error);
     }
