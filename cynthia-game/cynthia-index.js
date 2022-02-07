@@ -1,7 +1,23 @@
 //THIS IS A MEMORY GAME WITH PAIRS OF IMAGES
 
-//TODO: create array of imgages with character name X2
+//TODO: create array of imgages with character name, the twins next to each other
+const imagesCollection = [
+    {
+        img: "./images/alice.jpg",
+        character: "Alice",
+    },
+    {
+        img: "./images/alice.jpg",
+        character: "Alice",
+    },
+    {
+        img: "./Knave-of-hearts.jpg",
+        character: "Knave Of Hearts",
+    }
+
+];
 //TODO: create shuffle for images
+//TODO: create card with img and name
 //TODO: display back of shuffled images
 //TODO: create eventlistener for each image on click
 //TODO: create conditions of the game:
