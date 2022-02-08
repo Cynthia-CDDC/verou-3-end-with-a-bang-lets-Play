@@ -4,8 +4,36 @@ import { getSum } from "./score.js"
 import {success} from "./success.js"
 import {fail} from "./fail.js"
 
+let answerInput = document.createElement("input")
+let inputHolder = document.createElement("P")
+inputHolder.appendChild(answerInput)
 
-const fetchUsers = async () => {
+let button = document.createElement("button")
+button.innerHTML = "Submit"
+inputHolder.appendChild(button)
+
+let questionLine = document.createElement("P")
+holder.appendChild(inputHolder)
+holder.appendChild(questionLine)
+
+const successMsg = document.createElement("P");
+successMsg.id = "successDiv"
+holder.appendChild(successMsg)
+
+const failMsg = document.createElement("P");
+failMsg.id = "failDiv"
+holder.appendChild(failMsg)
+
+
+let i = 0
+let questions = {}
+
+
+function attachToElement() {
+    questionLine.innerHTML = questions[i].question
+}
+
+const fetchQuestions = async () => {
    try {
         const res = await fetch('https://opentdb.com/api.php?amount=5&type=multiple');
         if (!res.ok) {
@@ -13,61 +41,46 @@ const fetchUsers = async () => {
         }
         const data = await res.json();
         console.log(data);
-
-        // loop the questions
-        const fullData = data.results
-        
-        for(let i = 0; i < fullData.length; i++){
-            
-            console.log(fullData[i])
-           // display Question
-            const questionP = document.createElement("P")
-            const inputHolder = document.createElement("P")
-            questionP.innerHTML = fullData[i].question
-            holder.appendChild(questionP)
-
-           // create input
-            const userInput = document.createElement("input")
-            userInput.type = "text"
-            userInput.value = " "
-            inputHolder.appendChild(userInput)
-
-            // create button
-            const button = document.createElement("button")
-            button.innerHTML = "Submit"
-            inputHolder.appendChild(button)
-            holder.appendChild(inputHolder)
-
-            // Check answer function
-           button.addEventListener('click', function checkAnswer(){
-            const userInputValue = userInput.value
-            const userInputValueLowerCase = userInputValue.toLowerCase()
-            console.log(userInputValueLowerCase)
-            const correct_answer = fullData[i].correct_answer.toLowerCase()
-            console.log(correct_answer)
-                if( userInputValueLowerCase == " "+ correct_answer){
-                    inputHolder.style.display = "none"
-                    score.push(5)
-                    getSum()
-                    success()
-                    const successDiv = document.createElement("P");
-                    successDiv.id = "successDiv"
-                    successDiv.innerHTML = "CORRECT"
-                    questionP.appendChild(successDiv)
-                }else{
-                    inputHolder.style.display = "none"
-                    score.push(0)
-                    getSum()
-                    fail()
-                    const failDiv = document.createElement("P");
-                    failDiv.innerHTML = `NOT CORRECT! The correct answer is ${correct_answer}`
-                    failDiv.id = "failDiv"
-                    questionP.appendChild(failDiv)
-                }
-           })
-           }
+        questions = data.results
+        attachToElement()
     } catch (error) {
         console.log(error);
     }
 }
-fetchUsers();
+
+function responseMsg(is_success, correct_answer) {
+    if (is_success) {
+        successMsg.innerHTML = "CORRECT"
+    } else {
+       failMsg.innerHTML = `NOT CORRECT! The correct answer is ${correct_answer}`
+    }
+    
+}
+function checkAndNext() {
+    const userInputValue = answerInput.value
+    const userInputValueLowerCase = userInputValue.toLowerCase()
+    console.log(userInputValueLowerCase)
+    const correct_answer = questions[i].correct_answer.toLowerCase()
+    console.log(correct_answer)
+    if( userInputValueLowerCase == correct_answer){
+        score.push(5)
+        getSum()
+        success()
+        responseMsg(true, correct_answer)
+    }else{
+        score.push(0)
+        getSum()
+        fail()
+        responseMsg(false, correct_answer)
+    }
+    questionLine.innerHTML = ''
+    answerInput.value = ''
+}
+
+
+button.addEventListener('click', function() {
+    checkAndNext()
+    i++
+    attachToElement()
+})
+fetchQuestions();
