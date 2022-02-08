@@ -1,3 +1,5 @@
+const initialVelocity = 0.4;
+
 export default class ball {
     constructor(ballElement) {
         this.ballElement = ballElement;
@@ -37,8 +39,8 @@ export default class ball {
 
         // Make sure the angle of the ball won't be too horizontal or vertical
         while (
-            Math.abs(this.direction.x) <= 0.2 ||
-            Math.abs(this.direction.x) >= 0.9
+            Math.abs(this.direction.x) <= 0.25 ||
+            Math.abs(this.direction.x) >= 0.85
         ) {
             // Create random number between 0 and 1, where you
             let randomNumberBetween = (min, max) => {
@@ -51,13 +53,13 @@ export default class ball {
                 x: Math.cos(headingDirection),
                 y: Math.sin(headingDirection),
             };
-            console.log(this.direction);
+            this.velocity = initialVelocity;
         }
     }
 
     // Add movement to our ball, and check if it hits a paddle or wall
     update(delta) {
-        // this.ballX = 30;
-        // this.ballY = 30;
+        this.ballX += this.direction.x * this.velocity;
+        this.ballY += this.direction.y * this.velocity;
     }
 }
