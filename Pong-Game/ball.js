@@ -1,3 +1,6 @@
+const initialVelocity = 0.04;
+const velocityIncrease = 0.0000005;
+
 export default class ball {
     constructor(ballElement) {
         this.ballElement = ballElement;
@@ -27,6 +30,11 @@ export default class ball {
         this.ballElement.style.setProperty("--ball-y", value);
     }
 
+    // Add wall bounce
+    rect() {
+        return this.ballElement.getBoundingClientRect();
+    }
+
     // When we create a ball, make sure it is in the center
     reset() {
         this.ballX = 50;
@@ -37,8 +45,10 @@ export default class ball {
 
         // Make sure the angle of the ball won't be too horizontal or vertical
         while (
-            Math.abs(this.direction.x) <= 0.2 ||
-            Math.abs(this.direction.x) >= 0.9
+
+            Math.abs(this.direction.x) <= 0.25 ||
+            Math.abs(this.direction.x) >= 0.85
+
         ) {
             // Create random number between 0 and 1, where you
             let randomNumberBetween = (min, max) => {
@@ -51,13 +61,28 @@ export default class ball {
                 x: Math.cos(headingDirection),
                 y: Math.sin(headingDirection),
             };
-            console.log(this.direction);
+            this.velocity = initialVelocity;
+
         }
     }
 
     // Add movement to our ball, and check if it hits a paddle or wall
     update(delta) {
-        // this.ballX = 30;
-        // this.ballY = 30;
+
+        this.ballX += this.direction.x * this.velocity * delta;
+        this.ballY += this.direction.y * this.velocity * delta;
+
+        // Check for wall bounce
+        const rect = this.rect();
+
+        if (rect.bottom >= window.innerHeight || rect.top <= 0) {
+            this.direction.y *= -1;
+        }
+        if (rect.right >= window.innerWidth || rect.left <= 0) {
+            this.direction.x *= -1;
+        }
+
+        //Speed up ball with time
+        this.velocity += velocityIncrease * delta;
     }
 }
