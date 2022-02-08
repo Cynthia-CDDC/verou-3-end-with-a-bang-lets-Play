@@ -1,7 +1,7 @@
 //THIS IS A MEMORY GAME WITH PAIRS OF IMAGES
 
-//TODO: create array of imgages with character name, the twins next to each other
-const imagesCollection = [
+//array of objects with images and character name, the twins next to each other
+const images = [
     {
         img: "./cynthia-images/alice.jpg",
         character: "Alice",
@@ -38,9 +38,31 @@ const imagesCollection = [
         img: "./cynthia-images/white-queen.jpg",
         character: "White Queen",
     },
+    {
+        img: "./cynthia-images/white-queen.jpg",
+        character: "White Queen",
+    },
 ];
-//TODO: create shuffle for images
-//TODO: create card with img and name
+
+//TODO: create cards with img and name
+for (let image of images) {
+const card = document.createElement('div');//create at least one element to use template literal.
+card.className = "card";
+card.innerHTML = `
+    <div class="inner-card" id="inner-card">
+        <div class="card-front">
+            <img class="front-img" src="./cynthia-images/cheshire-cat.jpg" alt="Cheshire Cat">
+        </div>
+        <div class="card-back">
+            <img class="card-head" src= ${image.img}>
+            <h3 class="card-body"> ${image.character}</h3>
+        </div>
+    </div>`;
+const container = document.querySelector('.container');
+container.appendChild(card);
+}
+//TODO: push card to empty array
+//TODO: create shuffle for images on dynamically created array
 //TODO: display back of shuffled images
 //TODO: create eventlistener for each image on click
 //TODO: create conditions of the game:
