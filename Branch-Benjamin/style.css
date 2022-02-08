@@ -18,6 +18,8 @@
         var(--saturation-background),
         10%
     );
+
+    --font-playful: "Ole", cursive;
 }
 
 * {
@@ -38,12 +40,12 @@ body {
 
 .paddle.left {
     left: 2.5vw;
-    top: calc(var(--position) * 1vw);
+    top: calc(var(--position) * 0.5vw);
 }
 
 .paddle.right {
     right: 2.5vw;
-    bottom: calc(var(--position) * 1vw);
+    bottom: calc(var(--position) * 0.5vw);
 }
 
 .ball {
@@ -54,5 +56,26 @@ body {
     border-radius: 50%;
     left: calc(var(--ball-x) * 1vw);
     top: calc(var(--ball-y) * 1vh);
-    transform: translate(-50%);
+    transform: translate(-50%, -50%);
+}
+
+.score {
+    display: flex;
+    gap: 2vw;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 7vh;
+    color: var(--ball-color);
+    font-family: var(--font-playful);
+    opacity: 0.8;
+}
+
+#player-score,
+#computer-score {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+#player-score {
+    text-align: right;
 }
