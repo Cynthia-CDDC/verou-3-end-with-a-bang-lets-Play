@@ -41,12 +41,12 @@ body {
 
 .paddle.left {
     left: 2.5vw;
-    top: calc(var(--position) * 0.5vw);
+    top: calc(var(--position) * 1vh);
 }
 
 .paddle.right {
     right: 2.5vw;
-    bottom: calc(var(--position) * 0.5vw);
+    bottom: calc(var(--position) * 1vh);
 }
 
 .ball {

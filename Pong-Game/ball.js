@@ -45,10 +45,8 @@ export default class ball {
 
         // Make sure the angle of the ball won't be too horizontal or vertical
         while (
-
             Math.abs(this.direction.x) <= 0.25 ||
             Math.abs(this.direction.x) >= 0.85
-
         ) {
             // Create random number between 0 and 1, where you
             let randomNumberBetween = (min, max) => {
@@ -62,13 +60,11 @@ export default class ball {
                 y: Math.sin(headingDirection),
             };
             this.velocity = initialVelocity;
-
         }
     }
 
     // Add movement to our ball, and check if it hits a paddle or wall
     update(delta) {
-
         this.ballX += this.direction.x * this.velocity * delta;
         this.ballY += this.direction.y * this.velocity * delta;
 
