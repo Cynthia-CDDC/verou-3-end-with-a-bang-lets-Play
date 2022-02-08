@@ -1,4 +1,4 @@
-const initialVelocity = 0.4;
+const initialVelocity = 0.0002;
 
 export default class ball {
     constructor(ballElement) {
@@ -27,6 +27,11 @@ export default class ball {
 
     set ballY(value) {
         this.ballElement.style.setProperty("--ball-y", value);
+    }
+
+    // Add wall bounce
+    rect() {
+        return this.ballElement.getBoundingClientRect();
     }
 
     // When we create a ball, make sure it is in the center
@@ -59,7 +64,17 @@ export default class ball {
 
     // Add movement to our ball, and check if it hits a paddle or wall
     update(delta) {
-        this.ballX += this.direction.x * this.velocity;
-        this.ballY += this.direction.y * this.velocity;
+        this.ballX += this.direction.x * this.velocity * (delta / 2);
+        this.ballY += this.direction.y * this.velocity * (delta / 2);
+
+        // Check for wall bounce
+        const rect = this.rect();
+
+        if (rect.bottom >= window.innerHeight || rect.top <= 0) {
+            this.direction.y *= -1;
+        }
+        if (rect.right >= window.innerWidth || rect.left <= 0) {
+            this.direction.x *= -1;
+        }
     }
 }
