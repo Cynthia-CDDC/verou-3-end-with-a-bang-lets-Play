@@ -8,7 +8,7 @@ let lastTime = "";
 // Create infinite loop which will update animations every time the screen is allowed to change
 const update = (time) => {
     // In the beginning lastTime will be null, so we need to avoid calculating the delta in this case
-    if ((lastTime = !null)) {
+    if (lastTime != null) {
         // Every time our code updates we subtract our lastTime from the current time
         const delta = time - lastTime;
 

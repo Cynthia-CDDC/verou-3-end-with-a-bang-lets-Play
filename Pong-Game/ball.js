@@ -1,4 +1,5 @@
-const initialVelocity = 0.0002;
+const initialVelocity = 0.04;
+const velocityIncrease = 0.000001;
 
 export default class ball {
     constructor(ballElement) {
@@ -64,8 +65,8 @@ export default class ball {
 
     // Add movement to our ball, and check if it hits a paddle or wall
     update(delta) {
-        this.ballX += this.direction.x * this.velocity * (delta / 2);
-        this.ballY += this.direction.y * this.velocity * (delta / 2);
+        this.ballX += this.direction.x * this.velocity * delta;
+        this.ballY += this.direction.y * this.velocity * delta;
 
         // Check for wall bounce
         const rect = this.rect();
@@ -76,5 +77,8 @@ export default class ball {
         if (rect.right >= window.innerWidth || rect.left <= 0) {
             this.direction.x *= -1;
         }
+
+        //Speed up ball with time
+        this.velocity += velocityIncrease * delta;
     }
 }
