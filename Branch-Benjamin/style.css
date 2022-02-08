@@ -1,0 +1,81 @@
+:root {
+    --position: 5;
+    --ball-x: 50;
+    --ball-y: 50;
+
+    --hue-paddles: 64;
+    --saturation-paddles: 30%;
+    --paddles-color: hsl(var(--hue-paddles), var(--saturation-paddles), 80%);
+
+    --hue-ball: 12;
+    --saturation-ball: 89%;
+    --ball-color: hsl(var(--hue-ball), var(--saturation-ball), 39%);
+
+    --hue-background: 154;
+    --saturation-background: 10%;
+    --background-color: hsl(
+        var(--hue-background),
+        var(--saturation-background),
+        10%
+    );
+
+    --font-playful: "Ole", cursive;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--background-color);
+}
+
+.paddle {
+    position: absolute;
+    background-color: var(--paddles-color);
+    width: 2vh;
+    height: 15vh;
+}
+
+.paddle.left {
+    left: 2.5vw;
+    top: calc(var(--position) * 0.5vw);
+}
+
+.paddle.right {
+    right: 2.5vw;
+    bottom: calc(var(--position) * 0.5vw);
+}
+
+.ball {
+    position: absolute;
+    background-color: var(--ball-color);
+    width: 3vh;
+    height: 3vh;
+    border-radius: 50%;
+    left: calc(var(--ball-x) * 1vw);
+    top: calc(var(--ball-y) * 1vh);
+    transform: translate(-50%, -50%);
+}
+
+.score {
+    display: flex;
+    gap: 2vw;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 7vh;
+    color: var(--ball-color);
+    font-family: var(--font-playful);
+    opacity: 0.8;
+}
+
+#player-score,
+#computer-score {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+#player-score {
+    text-align: right;
+}
