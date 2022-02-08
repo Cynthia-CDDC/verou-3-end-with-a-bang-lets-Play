@@ -53,20 +53,19 @@ font-size: 4rem;
 }
 
 .card::before, .card::after{
-    color: black;
     position: absolute;
     content: attr(data-value);
     font-size: 1rem
 }
 
 .card.red {
-    color: red;
-    
-  }
-  
-  .card.black {
+    color: red;   
+}
+
+.card.black {
     color: black;
-  }
+}
+
 .card::before {
     top: .5rem;
     left: .5rem;
