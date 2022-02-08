@@ -5,17 +5,16 @@ export default class Deck {
     constructor(cards = newDeck()) {
         this.cards = cards
     }
-}
-numberOfCards(); {
-    return this.cards.length;
-}
 
-shuffle(); {
-    for (let i = this.numberOfCards -1; i>0; i--){
+
+
+shuffle() {
+    for (let i = this.cards.length -1; i>0; i--){
         const newIndex = Math.floor(Math.random() * (i+1))
         const oldValue = this.cards[newIndex]
         this.cards[newIndex] = this.cards[i]
         this.cards[i] = oldValue
+        }        
     }
 }
 
