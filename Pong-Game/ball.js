@@ -1,5 +1,5 @@
 const initialVelocity = 0.04;
-const velocityIncrease = 0.0000002;
+const velocityIncrease = 0.0000005;
 
 export default class ball {
     constructor(ballElement) {
