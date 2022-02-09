@@ -1,7 +1,7 @@
 const initialVelocity = 0.04;
 const velocityIncrease = 0.0000005;
 
-export default class ball {
+export default class Ball {
     constructor(ballElement) {
         this.ballElement = ballElement;
         // When we create a ball, make sure it is reset to the center
@@ -71,10 +71,10 @@ export default class ball {
         // Check for wall bounce
         const rect = this.rect();
 
-        if (rect.bottom >= window.innerHeight || rect.top <= 0) {
+        if (rect.bottom >= window.innerHeight - 3 || rect.top <= 3) {
             this.direction.y *= -1;
         }
-        if (rect.right >= window.innerWidth || rect.left <= 0) {
+        if (rect.right >= window.innerWidth - 3 || rect.left <= 3) {
             this.direction.x *= -1;
         }
 

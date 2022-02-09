@@ -1,6 +1,6 @@
-const computerSpeed = 0.2;
+const computerSpeed = 0.1;
 
-export default class paddle {
+export default class Paddle {
     constructor(paddleElement) {
         this.paddleElement = paddleElement;
     }
@@ -17,6 +17,8 @@ export default class paddle {
     }
 
     update(delta, ballHeight) {
-        this.position += computerSpeed * delta * (ballHeight - this.position);
+        this.position +=
+            computerSpeed * delta * (100 - ballHeight - this.position);
+        console.log(this.position);
     }
 }

@@ -1,12 +1,12 @@
-import ball from "./ball.js";
-import paddle from "./paddle.js";
+import Ball from "./Ball.js";
+import Paddle from "./Paddle.js";
 
 // Add ball from module
-const newBall = new ball(document.querySelector(".ball"));
+const newBall = new Ball(document.querySelector(".ball"));
 
 // Add paddle from module
-const playerPaddle = new paddle(document.querySelector("#player-paddle"));
-const computerPaddle = new paddle(document.querySelector("#computer-paddle"));
+const playerPaddle = new Paddle(document.getElementById("player-paddle"));
+const computerPaddle = new Paddle(document.getElementById("computer-paddle"));
 
 // Determine how much time has passed from the previous frame to the new frame
 let lastTime = "";
@@ -22,7 +22,7 @@ const update = (time) => {
         newBall.update(delta);
 
         // Add movement to computer paddle
-        computerPaddle.update(delta, ball.ballY);
+        computerPaddle.update(delta, newBall.ballY);
     }
 
     lastTime = time;
@@ -32,8 +32,21 @@ const update = (time) => {
 
 window.requestAnimationFrame(update);
 
-// Add eventlistener for player paddle
+// Add eventlistener for player paddle (mouse movement)
 document.addEventListener("mousemove", (e) => {
     // Convert pixel value to percentage
-    playerPaddle.position = (e.y / window.innerHeight) * 100;
+    playerPaddle.position = (e.y / window.innerHeight) * 85;
+});
+
+// Add eventlistener for player paddle (arrow keys)
+document.addEventListener("keydown", (e) => {
+    if (e.keyCode === 38) {
+        if (playerPaddle.position > 4) {
+            playerPaddle.position -= 5;
+        }
+    } else if (e.keyCode === 40) {
+        if (playerPaddle.position < 81) {
+            playerPaddle.position += 5;
+        }
+    }
 });
