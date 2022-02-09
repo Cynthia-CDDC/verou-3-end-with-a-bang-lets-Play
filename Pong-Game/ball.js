@@ -1,6 +1,15 @@
 const initialVelocity = 0.04;
 const velocityIncrease = 0.0000005;
 
+let isCollision = (rect1, rect2) => {
+    return (
+        rect1.left <= rect2.right &&
+        rect1.right >= rect2.left &&
+        rect1.top <= rect2.bottom &&
+        rect1.bottom >= rect2.top
+    );
+};
+
 export default class Ball {
     constructor(ballElement) {
         this.ballElement = ballElement;
@@ -64,20 +73,21 @@ export default class Ball {
     }
 
     // Add movement to our ball, and check if it hits a paddle or wall
-    update(delta) {
+    update(delta, paddleRects) {
         this.ballX += this.direction.x * this.velocity * delta;
         this.ballY += this.direction.y * this.velocity * delta;
 
         // Check for wall bounce
         const rect = this.rect();
 
+        // Check for collision
         if (rect.bottom >= window.innerHeight - 3 || rect.top <= 3) {
             this.direction.y *= -1;
         }
 
-        // if (rect.right >= window.innerWidth - 3 || rect.left <= 3) {
-        //     this.direction.x *= -1;
-        // }
+        if (paddleRects.some((r) => isCollision(r, rect))) {
+            this.direction.x *= -1;
+        }
 
         //Speed up ball with time
         this.velocity += velocityIncrease * delta;

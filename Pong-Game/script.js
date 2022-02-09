@@ -23,7 +23,7 @@ const update = (time) => {
         const delta = time - lastTime;
 
         // Add movement to our ball, and make sure it takes framerate drops into account
-        newBall.update(delta);
+        newBall.update(delta, [playerPaddle.rect(), computerPaddle.rect()]);
 
         // Add movement to computer paddle
         computerPaddle.update(delta, newBall.ballY);
