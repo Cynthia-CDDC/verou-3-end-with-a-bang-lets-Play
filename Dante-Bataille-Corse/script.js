@@ -23,21 +23,24 @@ const text = document.querySelector('.text')
 let playerMoves = 1
 let pcMoves = 0
 
+
 let playerDeck, computerDeck, inRound, stop
 
-if (playerMoves > 0){ document.getElementById("plDeck").addEventListener('click', () => {
-    if (stop) {
-        startgame();
-        return;
-    }
-    if (inRound) {
-        cleanBeforeRound()
-    } else {
-        flipPlayerCard()
-        setTimeout(flipPcCard, 800);
+
+document.getElementById("plDeck").addEventListener('click', () => {
+    if (playerMoves > 0){
+        if (stop) {
+            startgame();
+            return;
+        }
+        if (inRound) {
+            cleanBeforeRound()
+        } else {
+            flipPlayerCard()
+            setTimeout(flipPcCard, 800);
+        }
     }
 })
-}
 
 startgame()
 function startgame() {
@@ -74,29 +77,31 @@ function flipPlayerCard() {
 
 
 function flipPcCard() {
-    inRound = true
-    const pcCard = computerDeck.pop()
-    computerCardslot.appendChild(pcCard.getHTML())
-    playerMoves ++
-    pcMoves --
-    updateDeckCount()
+    if (pcMoves > 0){
+        inRound = true
+        const pcCard = computerDeck.pop()
+        computerCardslot.appendChild(pcCard.getHTML())
+        playerMoves ++
+        pcMoves --
+        updateDeckCount()
 
-    if (isRoundWinner(playerCard, pcCard)){
-        text.innertext("You won this round")
-        playerDeck.push(playerCard)
-        playerDeck.push(pcCard)
-    } else if (isRoundWinner (pcCard, playerCard)) {
-        text.innertext("You lost this Round")
-        computerDeck.push(playerCard)
-        computerDeck.push(pcCard)
-    } 
+        if (isRoundWinner(playerCard, pcCard)){
+            text.innertext("You won this round")
+            playerDeck.push(playerCard)
+            playerDeck.push(pcCard)
+        } else if (isRoundWinner (pcCard, playerCard)) {
+            text.innertext("You lost this Round")
+            computerDeck.push(playerCard)
+            computerDeck.push(pcCard)
+        } 
 
-    if (isGameOver(playerDeck)) {
-        text.innertext = "You lose!!"
-        stop = true
-    } else if (isGameOver(computerDeck)) {
-        text.innertext = "You Win!!!"
-        stop = true
+        if (isGameOver(playerDeck)) {
+            text.innertext = "You lose!!"
+            stop = true
+        } else if (isGameOver(computerDeck)) {
+            text.innertext = "You Win!!!"
+            stop = true
+        }
     }
 }
 
@@ -115,7 +120,7 @@ function isGameOver(deck) {
 }
 
 function markedCard(){
-
+    
 }
 
 /*todo: middle stack
