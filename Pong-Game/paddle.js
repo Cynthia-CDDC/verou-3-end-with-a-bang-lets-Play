@@ -3,6 +3,7 @@ const computerSpeed = 0.1;
 export default class Paddle {
     constructor(paddleElement) {
         this.paddleElement = paddleElement;
+        this.reset();
     }
 
     get position() {
@@ -16,9 +17,12 @@ export default class Paddle {
         this.paddleElement.style.setProperty("--position", value);
     }
 
+    reset() {
+        this.position = 50;
+    }
+
     update(delta, ballHeight) {
         this.position +=
             computerSpeed * delta * (100 - ballHeight - this.position);
-        console.log(this.position);
     }
 }

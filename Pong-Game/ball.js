@@ -74,9 +74,10 @@ export default class Ball {
         if (rect.bottom >= window.innerHeight - 3 || rect.top <= 3) {
             this.direction.y *= -1;
         }
-        if (rect.right >= window.innerWidth - 3 || rect.left <= 3) {
-            this.direction.x *= -1;
-        }
+
+        // if (rect.right >= window.innerWidth - 3 || rect.left <= 3) {
+        //     this.direction.x *= -1;
+        // }
 
         //Speed up ball with time
         this.velocity += velocityIncrease * delta;

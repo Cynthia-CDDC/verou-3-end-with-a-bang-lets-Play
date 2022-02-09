@@ -8,6 +8,10 @@ const newBall = new Ball(document.querySelector(".ball"));
 const playerPaddle = new Paddle(document.getElementById("player-paddle"));
 const computerPaddle = new Paddle(document.getElementById("computer-paddle"));
 
+// Add variables for scores
+const playerScoreElement = document.getElementById("player-score");
+const computerScoreElement = document.getElementById("computer-score");
+
 // Determine how much time has passed from the previous frame to the new frame
 let lastTime = "";
 
@@ -23,6 +27,10 @@ const update = (time) => {
 
         // Add movement to computer paddle
         computerPaddle.update(delta, newBall.ballY);
+
+        if (isLose()) {
+            handleLose();
+        }
     }
 
     lastTime = time;
@@ -31,6 +39,26 @@ const update = (time) => {
 };
 
 window.requestAnimationFrame(update);
+
+// Create functions for when someone loses
+let isLose = () => {
+    const rect = newBall.rect();
+    return rect.right >= window.innerWidth - 3 || rect.left <= 3;
+};
+
+let handleLose = () => {
+    const rect = newBall.rect();
+    if (rect.right >= window.innerWidth - 3) {
+        playerScoreElement.textContent =
+            parseInt(playerScoreElement.textContent) + 1;
+    } else if (rect.left <= 3) {
+        computerScoreElement.textContent =
+            parseInt(computerScoreElement.textContent) + 1;
+    }
+
+    newBall.reset();
+    computerPaddle.reset();
+};
 
 // Add eventlistener for player paddle (mouse movement)
 document.addEventListener("mousemove", (e) => {
