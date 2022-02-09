@@ -4,25 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Quiz-Game</title>
 
 </head>
 <body>
    
    <main id="container">
+       
     <section id="sub-container1">
-        <div id="choices">
-            <button id="game">Game</button>
-            <button id="music">music</button>
-            <button id="film">film</button>
-        </div>
-        
+        <form id="myForm" name="myForm" action="{action page}">
+            <label>
+              <input type="radio" name="choice" value="film"> Film
+            </label>
+            <label>
+              <input type="radio" name="choice" value="music"> Music
+            </label>
+            <label>
+              <input type="radio" name="choice" value="video"> Video Game
+            </label>
+            <label>
+                <input type="radio" name="choice" value="board"> Board Game
+              </label>
+              <label>
+                <input type="radio" name="choice" value="general"> General Knowledge 
+              </label>
+          </form>
         <div id="holder"></div>
     </section>
     <section id="sub-container2">
             <aside id="nav">
-                <p id="scoreHolder"> </p>
+                <p id="scoreHolder"> 0</p>
             </aside>
             <aside>
                 <div id="resultHolder"></div>

@@ -1,9 +1,11 @@
 export const score = []
 const holder = document.getElementById("holder")
-const feedbackHolder = document.getElementById("resultHolder")
+const feedbackHolder = document.getElementById("resultHolder");
+var lineBreak = '</br>'; 
 import { getSum } from "./score.js"
 import {success} from "./feedback.js"
 import {fail} from "./feedback.js"
+let url;
 
 let answerInput = document.createElement("input")
 answerInput.id = "answerInput"
@@ -32,10 +34,13 @@ let questions = {}
 function attachToElement() {
     questionLine.innerHTML = questions[i].question
 }
+
+
+
 // fetch data using API
-const fetchQuestions = async () => {
+export let fetchQuestions = async (url) => {
    try {
-        const res = await fetch("https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple");
+        const res = await fetch(url);
         if (!res.ok) {
             throw new Error(res.status);
         }
@@ -47,6 +52,48 @@ const fetchQuestions = async () => {
         console.log(error);
     }
 }
+
+// Choice of Question
+document.addEventListener("DOMContentLoaded", function(e) {
+
+    // Put the button into a variable
+    var e = document.getElementById("myForm");
+    
+    // Wait for user to click the button
+    e.addEventListener( "change", function() {
+    
+      // Put the selected value into a variable
+      var myChoice = this.choice.value;
+      
+      // The "Switch" statement.
+      switch ( myChoice ) {
+      
+      case "film":
+        url = "https://opentdb.com/api.php?amount=5&category=11&difficulty=easy&type=multiple"
+        fetchQuestions(url)
+        break;
+  
+      case "music":
+        url = "https://opentdb.com/api.php?amount=5&category=12&difficulty=easy&type=multiple"
+        fetchQuestions(url)
+  
+      case "video":
+        url = "https://opentdb.com/api.php?amount=5&category=15&difficulty=easy&type=multiple"
+        fetchQuestions(url)
+        break;
+
+      case "board":
+            url = "https://opentdb.com/api.php?amount=5&category=16&difficulty=easy&type=multiple"
+            fetchQuestions(url)
+            break;
+    case "general":
+        url = "https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple"
+        fetchQuestions(url)
+        break;
+        }
+    }, false);
+  });
+
 // feedback success or fail message
 function responseMsg(is_success, correct_answer) {
     
@@ -55,13 +102,13 @@ function responseMsg(is_success, correct_answer) {
         successMsg.id = "successMsg"
         successMsg.id = "successDiv"
         feedbackDiv.appendChild(successMsg)
-        successMsg.innerHTML = "CORRECT"
+        successMsg.innerHTML = `<img src="https://img.icons8.com/emoji/48/000000/nikita-clapping-hands-emoji.png"/>${lineBreak}<span>Good Job! </span>`
     } else {
         const failMsg = document.createElement("P");
         failMsg.id = "failMsg"
         failMsg.id = "failDiv"
         feedbackDiv.appendChild(failMsg)
-       failMsg.innerHTML = `NOT CORRECT! The correct answer is ${correct_answer}`
+       failMsg.innerHTML = `<img id="img" src="https://img.icons8.com/emoji/48/000000/thinking-face.png"/>${lineBreak}<span>NOT CORRECT!</span> The correct answer is <span>${correct_answer}</span>`
     }
 }
 // check the Answer
@@ -90,4 +137,3 @@ button.addEventListener('click', function() {
     i++
     attachToElement()
 })
-fetchQuestions();
