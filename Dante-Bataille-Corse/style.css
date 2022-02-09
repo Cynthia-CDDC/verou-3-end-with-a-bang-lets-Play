@@ -8,16 +8,22 @@ body{
     grid-template-columns: repeat(2, 4rem);
     grid-template-rows: 7rem 2rem 7rem;
     gap: .5rem;
-    cursor: pointer;
     justify-content: center;
     padding-top: 1rem;
 }
 
+/* .column{
+    height: 300px;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+} */
 .deck {
     height: 100%;
     width: 100%;
     border: 1px solid black;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 3rem;
