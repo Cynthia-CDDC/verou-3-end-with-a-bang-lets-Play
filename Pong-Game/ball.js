@@ -1,5 +1,5 @@
-const initialVelocity = 0.04;
-const velocityIncrease = 0.0000005;
+const initialVelocity = 0.05;
+const velocityIncrease = 0.000004;
 
 let isCollision = (rect1, rect2) => {
     return (
@@ -54,7 +54,7 @@ export default class Ball {
 
         // Make sure the angle of the ball won't be too horizontal or vertical
         while (
-            Math.abs(this.direction.x) <= 0.25 ||
+            Math.abs(this.direction.x) <= 0.3 ||
             Math.abs(this.direction.x) >= 0.85
         ) {
             // Create random number between 0 and 1, where you
@@ -81,7 +81,7 @@ export default class Ball {
         const rect = this.rect();
 
         // Check for collision
-        if (rect.bottom >= window.innerHeight - 3 || rect.top <= 3) {
+        if (rect.bottom >= window.innerHeight - 1 || rect.top <= 1) {
             this.direction.y *= -1;
         }
 

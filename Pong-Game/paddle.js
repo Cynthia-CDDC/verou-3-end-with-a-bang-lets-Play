@@ -1,4 +1,4 @@
-const computerSpeed = 0.1;
+const computerSpeed = 0.08;
 
 export default class Paddle {
     constructor(paddleElement) {

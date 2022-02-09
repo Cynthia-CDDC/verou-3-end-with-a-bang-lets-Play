@@ -28,6 +28,43 @@ const update = (time) => {
         // Add movement to computer paddle
         computerPaddle.update(delta, newBall.ballY);
 
+        // Change background color based on playfield area
+        const hueBackground = parseFloat(
+            getComputedStyle(document.documentElement).getPropertyValue(
+                "--hue-background"
+            )
+        );
+
+        document.documentElement.style.setProperty(
+            "--hue-background",
+            hueBackground + delta * 0.03
+        );
+
+        // Change paddles color based on playfield area
+        const huePaddles = parseFloat(
+            getComputedStyle(document.documentElement).getPropertyValue(
+                "--hue-paddles"
+            )
+        );
+
+        document.documentElement.style.setProperty(
+            "--hue-paddles",
+            huePaddles + delta * 0.05
+        );
+
+        // Change ball color based on playfield area
+        const hueBall = parseFloat(
+            getComputedStyle(document.documentElement).getPropertyValue(
+                "--hue-ball"
+            )
+        );
+
+        document.documentElement.style.setProperty(
+            "--hue-ball",
+            hueBall + delta * 0.05
+        );
+
+        // Add functions for when someone loses
         if (isLose()) {
             handleLose();
         }
