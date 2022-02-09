@@ -61,10 +61,14 @@ card.innerHTML = `
     </div>`;
 const container = document.querySelector('.container');
 container.appendChild(card);
+
+card.addEventListener('click', () => {
+    console.log('test eventlistener ok')
+});
 }
 
 //TODO: create eventlistener for each image on click
-
+document.querySelector('.card')
 
 //TODO: create conditions of the game:
         // - if two cards are selected no more clicks possible (add message to player)
