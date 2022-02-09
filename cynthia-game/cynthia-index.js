@@ -43,9 +43,10 @@ const images = [
         character: "White Queen",
     },
 ];
+const imagesShuffled = images.sort((a, b) => 0.5 - Math.random());
+console.log(imagesShuffled)
 
-//TODO: create cards with img and name
-for (let image of images) {
+for (let image of imagesShuffled) {
 const card = document.createElement('div');//create at least one element to use template literal.
 card.className = "card";
 card.innerHTML = `
@@ -61,10 +62,10 @@ card.innerHTML = `
 const container = document.querySelector('.container');
 container.appendChild(card);
 }
-//TODO: push card to empty array
-//TODO: create shuffle for images on dynamically created array
-//TODO: display back of shuffled images
+
 //TODO: create eventlistener for each image on click
+
+
 //TODO: create conditions of the game:
         // - if two cards are selected no more clicks possible (add message to player)
         // - compare images:
