@@ -1,3 +1,4 @@
+
 *{
     margin: 0;
     padding: 0;
@@ -37,11 +38,16 @@
     padding: 5%;
 }
 #successDiv{
+
+#successDiv {
+
     background-color: green;
 }
-#failDiv{
+#failDiv {
     background-color: red;
 }
+
 #questionLine{
     font-size: 20px;
 }
+
