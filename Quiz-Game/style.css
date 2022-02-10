@@ -123,14 +123,48 @@ form{
     margin-left: 40%;
 }
 
-@media only screen and (max-width: 800px){
-    #label{
-        font-size: 10px;
+@media only screen and (min-width: 400px) and (max-width: 800px) {
+    #container{
+        display: grid;
+        grid-template-columns:100%;
+       
     }
-    input{
-        height: 10px;
-        size: 10px;
+    #sub-container1{
+      height: auto;
+       min-height: 350px;
     }
-}
-
+    #sub-container2{
+       margin: 0% 0% 5% 0%;
+        height: auto;
+        min-height: 100px;
+    }
+    #answerInput{
+        width: 80%;
+        height: 40px;
+        margin: 10% 0% 0% 0%;
+    }
+    #submitButton{
+        width: 80%;
+        height: 50px;
+        margin: 10% 0% 0% 0%;
+       
+    }
+    #questionLine{
+        width: 80%;
+        height: 40px;
+        margin: 10% 0% 0% 0%;
+     }
+     #restart{
+        width: 80%;
+        height: 40px;
+        margin: 10% 0% 0% 0%;
+       
+    }
+    footer{
+        background-color: #edae49;
+        height: auto;
+        min-height: 100px;
+        margin-top: -5%;
+    }
+   }
 
