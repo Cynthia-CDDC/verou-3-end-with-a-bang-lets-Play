@@ -1,7 +1,16 @@
-const initialVelocity = 0.04;
-const velocityIncrease = 0.0000005;
+const initialVelocity = 0.05;
+const velocityIncrease = 0.000004;
 
-export default class ball {
+let isCollision = (rect1, rect2) => {
+    return (
+        rect1.left <= rect2.right &&
+        rect1.right >= rect2.left &&
+        rect1.top <= rect2.bottom &&
+        rect1.bottom >= rect2.top
+    );
+};
+
+export default class Ball {
     constructor(ballElement) {
         this.ballElement = ballElement;
         // When we create a ball, make sure it is reset to the center
@@ -45,10 +54,8 @@ export default class ball {
 
         // Make sure the angle of the ball won't be too horizontal or vertical
         while (
-
-            Math.abs(this.direction.x) <= 0.25 ||
+            Math.abs(this.direction.x) <= 0.3 ||
             Math.abs(this.direction.x) >= 0.85
-
         ) {
             // Create random number between 0 and 1, where you
             let randomNumberBetween = (min, max) => {
@@ -62,23 +69,23 @@ export default class ball {
                 y: Math.sin(headingDirection),
             };
             this.velocity = initialVelocity;
-
         }
     }
 
     // Add movement to our ball, and check if it hits a paddle or wall
-    update(delta) {
-
+    update(delta, paddleRects) {
         this.ballX += this.direction.x * this.velocity * delta;
         this.ballY += this.direction.y * this.velocity * delta;
 
         // Check for wall bounce
         const rect = this.rect();
 
-        if (rect.bottom >= window.innerHeight || rect.top <= 0) {
+        // Check for collision
+        if (rect.bottom >= window.innerHeight - 1 || rect.top <= 1) {
             this.direction.y *= -1;
         }
-        if (rect.right >= window.innerWidth || rect.left <= 0) {
+
+        if (paddleRects.some((r) => isCollision(r, rect))) {
             this.direction.x *= -1;
         }
 
