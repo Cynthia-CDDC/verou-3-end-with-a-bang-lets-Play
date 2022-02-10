@@ -5,7 +5,7 @@ var lineBreak = '</br>';
 import { getSum } from "./score.js"
 import {success} from "./feedback.js"
 import {fail} from "./feedback.js"
-export let url;
+import 'animate.css';
 
 let answerInput = document.createElement("input")
 answerInput.id = "answerInput"
@@ -36,8 +36,8 @@ function attachToElement() {
 }
 
 
-
 // fetch data using API
+export let url ;
 export let fetchQuestions = async (url) => {
    try {
         const res = await fetch(url);
