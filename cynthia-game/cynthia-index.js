@@ -47,30 +47,56 @@ const imagesShuffled = images.sort((a, b) => 0.5 - Math.random());
 console.log(imagesShuffled)
 
 for (let image of imagesShuffled) {
-const card = document.createElement('div');//create at least one element to use template literal.
-card.className = "card";
-card.innerHTML = `
-    <div class="inner-card" id="inner-card">
-        <div class="card-front">
-            <img class="front-img" src="./cynthia-images/cheshire-cat.jpg" alt="Cheshire Cat">
-        </div>
-        <div class="card-back">
-            <img class="card-head" src= ${image.img}>
-            <h3 class="card-body"> ${image.character}</h3>
-        </div>
-    </div>`;
-const container = document.querySelector('.container');
-container.appendChild(card);
+    console.log(image)
+    const card = document.createElement('div');//create at least one element to use template literal.
+    card.className = "card";
+    card.innerHTML = `
+        <div class="inner-card" id="inner-card">
+            <div class="card-front">
+                <img class="front-img" src="./cynthia-images/cheshire-cat.jpg" alt="Cheshire Cat">
+            </div>
+            <div class="card-back">
+                <img class="card-head" src= ${image.img}>
+                <h3 class="card-body"> ${image.character}</h3>
+            </div>
+        </div>`;
 
-card.addEventListener('click', () => {
-    console.log('test eventlistener ok')
-});
+    card.setAttribute('index', image)
+    card.addEventListener('click', imageClicked(image))
+    console.log(card)
+    const container = document.querySelector('.container');
+    container.appendChild(card);   
 }
 
-//TODO: create eventlistener for each image on click
-document.querySelector('.card')
+function imageClicked(index) {
+    console.log(this) //this = window
+    return function(){
+        console.log(index)
+        console.log(index.character) //does gives characters name of the clicked card
+        //would need index nr. instead of character name
 
-//TODO: create conditions of the game:
+        const clickedCard = document.querySelector(".card");
+        clickedCard.classList.toggle("flipCard");
+        console.log('test eventlistener ok')
+        console.log(clickedCard)
+
+        // click on whatever card it is allways the first that flips, on second random click the second card flips, ...
+        const innerCard = document.querySelector(".inner-card")
+        innerCard.classList.toggle("inner-card");
+        console.log(innerCard)
+    }
+}
+
+// const clickedCard = document.querySelector(".card");
+//         clickedCard.classList.toggle("flipCard");
+//         console.log('test eventlistener ok')
+//         console.log(clickedCard)
+//         innerCard.classList.toggle("inner-card");
+//         console.log(innerCard)
+// when card is clicked: flip the card
+
+//TODO: create conditions of the game: see steps further down in doc
+        // - if card is clicked: 
         // - if two cards are selected no more clicks possible (add message to player)
         // - compare images:
             // - if the two img are the same they stay visible and two clicks are possible again (add message to player)

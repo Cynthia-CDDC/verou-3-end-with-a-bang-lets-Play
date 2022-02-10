@@ -12,34 +12,46 @@
     perspective: 1000px;
     border-radius: 25px;
 }   
-.inner-card {/*card class and card id: eventListener*/
+.inner-card {
     position: relative;
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s; /*timelaps to complete the transformation*/
+    transition: all 0.8s ease; /*timelaps to complete the transformation*/
     transform-style: preserve-3d;/*specifies the position of childelement to preserve its 3D position*/
 }
-.card:hover .inner-card {/*will be toggle*/
+
+/*will be toggle*/
+.inner-card {
     transform: rotateY(180deg);
 }
 
 /*new class created in JS for the .inner-card to allow toggle event to execute*/
-/* .flipCard {
+.flipCard {
     transform: rotateY(180deg);
-} */
+}
+.card-front{
 
-
-.card-front, .card-back {
+}
+.card-front {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
+    transform: rotateY(180deg);
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 .card-back {
-    transform: rotateY(180deg);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
+
+
+/* with .card-back transform active standard shows front image */
+
 .card-head {
 
 }
