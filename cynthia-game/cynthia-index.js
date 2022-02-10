@@ -47,6 +47,22 @@ const images = [
 const imagesShuffled = images.sort((a, b) => 0.5 - Math.random());
 console.log(imagesShuffled)
 
+const clickedItems = [];
+
+const toggleCard = (card) => {
+    card.classList.toggle("flipCard");
+
+    console.log(card)
+    console.log(card.children);// = inner-card
+    console.log(card.children[0])// array with 1 item = html element
+
+    card.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
+    if (clickedItems.length <= 2){
+        
+    }
+    
+} 
+
 for (let i = 0; i < images.length; i++) {
     const card = document.createElement("div"); //create at least one element to use template literal.
     card.className = "card";
@@ -61,35 +77,42 @@ for (let i = 0; i < images.length; i++) {
             </div>
         </div>`;
 
-    // Add source attribute
-    card.setAttribute("src", "./cynthia-images/cheshire-cat.jpg");
     // Add index attribute
     card.setAttribute("index", i);
     const container = document.querySelector(".container");
     container.appendChild(card);
     console.log(i)
 
-    function imageClicked() {
+    function imageClicked(event) {
         console.log(card)
-
-        card.classList.toggle("flipCard");
-        console.log(card)
-        console.log(card.children);// = inner-card
-        console.log(card.children[0])// array with 1 item = html element
-
-        card.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
+        toggleCard(card)
+        if (clickedItems.length == 2 && clickedItems[0] !== clickedItems[1]) {
+                //not the same
+            console.log(clickedItems)
+            
+            for (let i = 0; i < clickedItems.length; i++) {
+                toggleCard(clickedItems[i])
+                console.log(clickedItems) 
+            }
+            console.log('kow')
+            // - if the two img are not the same the img dissapears after a few seconds and clicks are possible again
+        } else if (clickedItems.length == 2 && clickedItems[0] == clickedItems[1]) {
+            //the same
+            console.log(clickedItems)
+            console.log('horse')
+        } else {
+            clickedItems.push(card)
+            console.log(clickedItems)
+            console.log('bull')
+        }
+        
     }
-    card.addEventListener('click', imageClicked)
+    card.addEventListener('click', imageClicked, { once: true })
 }
 
-//TODO: create conditions of the game: see steps further down in doc
-        // - if card is clicked: 
-        // - if two cards are selected no more clicks possible (add message to player)
+//TODO: // - when two cards are clicked:
+            // - other cards no longer clicable until after comparison was made between the two 
         // - compare images:
-            // - if the two img are the same they stay visible and two clicks are possible again (add message to player)
-            // - if the two img are not the same the img dissapears after a few seconds and clicks are possible again (add message to player)
-            // - if all the img are visible the game is done (add message to player)
-            // - play again button to start new session
-
-//TODO: create play again button
-//TODO: create event listener for button on click
+            // - if the two img are the same they stay visible and clicks are possible again (add message to player)
+            
+            // - if all the img are visible the game is done

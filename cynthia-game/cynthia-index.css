@@ -3,13 +3,13 @@
     padding: 0;
 }
 .container {
-    margin: 3rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    row-gap: 4rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100vw;
     justify-items: center;
 }
-.card {/*maincontainer*/
+.card {
     background-color: green;
     width: 200px;
     height: 180px;
@@ -33,17 +33,18 @@
 /*new class created in JS for the .inner-card to allow toggle event to execute*/
 .flipCard {
     transform: rotateY(180deg);
+    transition: all 0.8s ease;
 }
 .card-front{
-
+    transform: rotateY(180deg);
 }
 .card-front {
     position: absolute;
     width: 100%;
     height: 100%;
-    transform: rotateY(180deg);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    transform: rotateY(180deg);
 }
 .card-back {
     position: absolute;
@@ -52,8 +53,6 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
-
 /* with .card-back transform active standard shows front image */
 
 .card-head {
