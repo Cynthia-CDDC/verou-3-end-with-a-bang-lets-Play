@@ -43,12 +43,12 @@ const images = [
         character: "White Queen",
     },
 ];
+
 const imagesShuffled = images.sort((a, b) => 0.5 - Math.random());
 console.log(imagesShuffled)
 
-for (let image of imagesShuffled) {
-    console.log(image)
-    const card = document.createElement('div');//create at least one element to use template literal.
+for (let i = 0; i < images.length; i++) {
+    const card = document.createElement("div"); //create at least one element to use template literal.
     card.className = "card";
     card.innerHTML = `
         <div class="inner-card" id="inner-card">
@@ -56,44 +56,31 @@ for (let image of imagesShuffled) {
                 <img class="front-img" src="./cynthia-images/cheshire-cat.jpg" alt="Cheshire Cat">
             </div>
             <div class="card-back">
-                <img class="card-head" src= ${image.img}>
-                <h3 class="card-body"> ${image.character}</h3>
+                <img class="card-head" src= ${imagesShuffled[i].img}>
+                <h3 class="card-body"> ${imagesShuffled[i].character}</h3>
             </div>
         </div>`;
 
-    card.setAttribute('index', image)
-    card.addEventListener('click', imageClicked(image))
-    console.log(card)
-    const container = document.querySelector('.container');
-    container.appendChild(card);   
-}
+    // Add source attribute
+    card.setAttribute("src", "./cynthia-images/cheshire-cat.jpg");
+    // Add index attribute
+    card.setAttribute("index", i);
+    const container = document.querySelector(".container");
+    container.appendChild(card);
+    console.log(i)
 
-function imageClicked(index) {
-    console.log(this) //this = window
-    return function(){
-        console.log(index)
-        console.log(index.character) //does gives characters name of the clicked card
-        //would need index nr. instead of character name
+    function imageClicked() {
+        console.log(card)
 
-        const clickedCard = document.querySelector(".card");
-        clickedCard.classList.toggle("flipCard");
-        console.log('test eventlistener ok')
-        console.log(clickedCard)
+        card.classList.toggle("flipCard");
+        console.log(card)
+        console.log(card.children);// = inner-card
+        console.log(card.children[0])// array with 1 item = html element
 
-        // click on whatever card it is allways the first that flips, on second random click the second card flips, ...
-        const innerCard = document.querySelector(".inner-card")
-        innerCard.classList.toggle("inner-card");
-        console.log(innerCard)
+        card.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
     }
+    card.addEventListener('click', imageClicked)
 }
-
-// const clickedCard = document.querySelector(".card");
-//         clickedCard.classList.toggle("flipCard");
-//         console.log('test eventlistener ok')
-//         console.log(clickedCard)
-//         innerCard.classList.toggle("inner-card");
-//         console.log(innerCard)
-// when card is clicked: flip the card
 
 //TODO: create conditions of the game: see steps further down in doc
         // - if card is clicked: 

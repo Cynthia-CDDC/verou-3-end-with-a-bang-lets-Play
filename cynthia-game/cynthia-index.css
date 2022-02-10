@@ -3,7 +3,11 @@
     padding: 0;
 }
 .container {
-    
+    margin: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 4rem;
+    justify-items: center;
 }
 .card {/*maincontainer*/
     background-color: green;
