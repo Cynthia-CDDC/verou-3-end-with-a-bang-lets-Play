@@ -13,12 +13,11 @@ body{
 }
 #sub-container1{
     margin: 5% 5% 5% 10%;
-    height: 100px;
 }
 #sub-container2{
     margin: 0% 0% 5% 20%;
     height: auto;
-    min-height: 650px;
+    min-height: 400px;
     background-color: #edae49;
 }
 #answerInput{
@@ -66,7 +65,7 @@ body{
 }
 #scoreHolder{
     text-align: center;
-    padding: 5%;
+    padding-top: 5%;
     font-size: 40px;
     font-weight: bold;
 }
@@ -117,12 +116,13 @@ label:hover{
    color: black;
 }
 footer{
-    background-color: #edae49;
+    background-color: black;
     height: auto;
     min-height: 50px;
-    margin-top: -2%;
+    margin-top: -1.5%;
     text-align: center;
     font-weight: bold;
+    color: #edae49;
 }
 form{
     animation: slideInRight; 
@@ -154,9 +154,9 @@ form{
         margin: 10% 0% 0% 0%;
     }
     #submitButton{
-        width: 80%;
+        width: 40%;
         height: 50px;
-        margin: 10% 0% 0% 0%;
+        margin: 10% 0% 0% 20%;
        
     }
     #questionLine{
@@ -165,16 +165,17 @@ form{
         margin: 10% 0% 0% 0%;
      }
      #restart{
-        width: 80%;
+        width: 40%;
         height: 40px;
-        margin: 10% 0% 0% 0%;
+        margin: 10% 0% 0% 20%;
        
     }
     footer{
-        background-color: #edae49;
+        background-color: black;
         height: auto;
         min-height: 50px;
         margin-top: -5%;
+        color: #edae49;
     }
    }
 
