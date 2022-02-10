@@ -47,25 +47,50 @@ const images = [
 const imagesShuffled = images.sort((a, b) => 0.5 - Math.random());
 console.log(imagesShuffled)
 
-const clickedItems = [];
+let clickedItems = [];
+
+const compareCards = (clickedItems) => {
+
+    if(clickedItems.length === 2 && clickedItems[0].id !== clickedItems[1].id) {
+        setTimeout(function () {
+            for (let i = 0; i < clickedItems.length; i++) {
+                toggleCard(clickedItems[i])
+            }
+            clickedItems = [];
+            console.log(clickedItems)
+            console.log("dog")
+
+        }, 1000);
+
+        //TODO fix else if statement to empty clickedItems list
+    } else if (clickedItems.length === 2 && clickedItems[0].id === clickedItems[1].id) {
+        clickedItems = [];
+        console.log(clickedItems)
+        console.log("cat")
+
+    } else {
+        console.log(clickedItems)
+        console.log("cow")
+    }
+    return clickedItems;
+}
 
 const toggleCard = (card) => {
-    card.classList.toggle("flipCard");
-
     console.log(card)
-    console.log(card.children);// = inner-card
-    console.log(card.children[0])// array with 1 item = html element
+    card.classList.toggle("flipCard");
+    //
+    // console.log(card)
+    // console.log(card.children);// = inner-card
+    // console.log(card.children[0])// array with 1 item = html element
 
     card.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
-    if (clickedItems.length <= 2){
-        
-    }
-    
+
 } 
 
 for (let i = 0; i < images.length; i++) {
     const card = document.createElement("div"); //create at least one element to use template literal.
     card.className = "card";
+    card.id = imagesShuffled[i].character;
     card.innerHTML = `
         <div class="inner-card" id="inner-card">
             <div class="card-front">
@@ -81,33 +106,42 @@ for (let i = 0; i < images.length; i++) {
     card.setAttribute("index", i);
     const container = document.querySelector(".container");
     container.appendChild(card);
-    console.log(i)
+    // console.log(i)
 
     function imageClicked(event) {
-        console.log(card)
+        // console.log(card)
         toggleCard(card)
-        if (clickedItems.length == 2 && clickedItems[0] !== clickedItems[1]) {
-                //not the same
-            console.log(clickedItems)
-            
-            for (let i = 0; i < clickedItems.length; i++) {
-                toggleCard(clickedItems[i])
-                console.log(clickedItems) 
-            }
-            console.log('kow')
-            // - if the two img are not the same the img dissapears after a few seconds and clicks are possible again
-        } else if (clickedItems.length == 2 && clickedItems[0] == clickedItems[1]) {
-            //the same
-            console.log(clickedItems)
-            console.log('horse')
-        } else {
+
+        if(clickedItems.length <= 1) {
             clickedItems.push(card)
-            console.log(clickedItems)
+
+            compareCards(clickedItems);
+
             console.log('bull')
+            console.log(clickedItems);
         }
+        // TODO: else statement on when clicked items is more than 2 -> reset
+
+        // if (clickedItems.length == 2 && clickedItems[0] !== clickedItems[1]) {
+        //         //not the same
+        //     console.log(clickedItems)
+        //
+        //     for (let i = 0; i < clickedItems.length; i++) {
+        //         toggleCard(clickedItems[i])
+        //         console.log(clickedItems)
+        //     }
+        //     console.log('kow')
+        //     // - if the two img are not the same the img dissapears after a few seconds and clicks are possible again
+        // } else if (clickedItems.length == 2 && clickedItems[0] == clickedItems[1]) {
+        //     //the same
+        //     console.log(clickedItems)
+        //     console.log('horse')
+        // } else {
+        //
+        // }
         
     }
-    card.addEventListener('click', imageClicked, { once: true })
+    card.addEventListener('click', imageClicked, {once: true})
 }
 
 //TODO: // - when two cards are clicked:
