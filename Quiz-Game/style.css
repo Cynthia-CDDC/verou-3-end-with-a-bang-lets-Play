@@ -2,7 +2,11 @@
     margin: 0;
     padding: 0;
 }
+body{
+    font-family: monospace;
+}
 #container{
+    font-family: monospace;
     display: grid;
     grid-template-columns: 70% 30%;
     background-color: #00798c;
@@ -14,7 +18,7 @@
 #sub-container2{
     margin: 0% 0% 5% 20%;
     height: auto;
-    min-height: 700px;
+    min-height: 650px;
     background-color: #edae49;
 }
 #answerInput{
@@ -32,7 +36,7 @@
     background-color: #edae49;
     border-radius: 5px;
     border: #edae49;
-   
+    font-weight: bold;
 }
 #restart{
     width: 30%;
@@ -41,35 +45,37 @@
     background-color: #edae49;
     border-radius: 5px;
     border: #edae49;
-   
+    font-weight: bold;
+}
+#submitButton:hover, #restart:hover{
+    background-color: black;
+    color: #edae49;
 }
 #successDiv{
     padding: 5%;
     margin: 3%;
+    font-size: 12px;
 }
 #failDiv{
     padding: 5%;
     margin: 3%;
+    font-size: 12px;
+}
+#failDiv:hover{
+    transform: scale(0.9);
 }
 #scoreHolder{
     text-align: center;
     padding: 5%;
     font-size: 40px;
-    color: white;
-    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc,
-    0 5px 0 #ccc, 0 4px 0 #ccc,
-    0 5px 0 #ccc, 0 6px 0 #ccc,
-    0 7px 0 #ccc, 0 8px 0 #ccc,
-    0 9px 0 #ccc, 0 10px 0 #ccc,
-    0 11px 0 #ccc, 0 12px 0 #ccc,
-    0 20px 30px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
 }
 #successDiv{
- background-color: #40916c;
- height: 100px;
- border-radius: 10px;
- animation: slideInRight; 
- animation-duration: 0.5s;
+    background-color: #40916c;
+    height: 100px;
+    border-radius: 10px;
+    animation: slideInRight; 
+    animation-duration: 0.5s;
 }
 #failDiv {
     background-color: #d1495b;
@@ -103,16 +109,20 @@ label{
 input{
     height: 20px;
     size: 20px;
-    vertical-align: middle;   
+    vertical-align: middle;
+    background-color: black; 
+    color: white;
 }
 label:hover{
-   color: white;
+   color: black;
 }
 footer{
     background-color: #edae49;
     height: auto;
-    min-height: 100px;
+    min-height: 50px;
     margin-top: -2%;
+    text-align: center;
+    font-weight: bold;
 }
 form{
     animation: slideInRight; 
@@ -163,7 +173,7 @@ form{
     footer{
         background-color: #edae49;
         height: auto;
-        min-height: 100px;
+        min-height: 50px;
         margin-top: -5%;
     }
    }
