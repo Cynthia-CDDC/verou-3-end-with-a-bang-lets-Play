@@ -83,13 +83,13 @@ span{
 label{
     font-size: 20px;
     size: 20px;
-    margin: 2%;
+    margin: 1%;
     color: #edae49;
     font-weight: bold;
 }
 input{
-    height: 50px;
-    size: 50px;
+    height: 20px;
+    size: 20px;
     vertical-align: middle;
 }
 label:hover{
