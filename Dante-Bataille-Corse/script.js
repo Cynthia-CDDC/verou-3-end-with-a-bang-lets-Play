@@ -1,4 +1,5 @@
 import Deck from './deck.js'
+// assign values to J,Q,K and A cards
 const cardValueMap = {
     "2" : 2,
     "3" : 3,
@@ -14,19 +15,19 @@ const cardValueMap = {
     "K" : 13,
     "A" : 14
 }
-
+// global constant vars
 const computerCardslot = document.querySelector('.pccard-slot')
 const playerCardSlot = document.querySelector('.plcard-slot')
 const playerDeckElement = document.querySelector('.playerDeck')
 const computerDeckElement = document.querySelector('.pcDeck')
 const text = document.querySelector('.text')
+
+// global changeable vars
 let playerMoves = 1
 let pcMoves = 0
-
-
 let playerDeck, computerDeck, inRound, stop
 
-
+// clicker function
 document.getElementById("plDeck").addEventListener('click', () => {
     if (playerMoves > 0){
         if (stop) {
@@ -43,6 +44,7 @@ document.getElementById("plDeck").addEventListener('click', () => {
 })
 
 startgame()
+//shuffle and divide card deck
 function startgame() {
     const deck = new Deck()
     deck.shuffle()
@@ -55,7 +57,7 @@ function startgame() {
 
     cleanBeforeRound()
 }
-
+// gets rid of littering text
 function cleanBeforeRound() {
     inRound = false
     computerCardslot.innerHTML = ''
@@ -64,27 +66,24 @@ function cleanBeforeRound() {
 
     updateDeckCount()
 }
-
+// amalgamation of functions
 function flipPlayerCard() {
     inRound = true
     const playerCard = playerDeck.pop()
     playerCardSlot.appendChild(playerCard.getHTML())
-    pcMoves ++
-    playerMoves --
-    moves(playerCard, pcMoves, playerMoves)
-    console.log(playerMoves)
+    normalCardMoves(playerCard, pcMoves, playerMoves)
+    markedCard(playerCard, pcMoves, playerMoves)
     updateDeckCount()
 }
 
-
+// another amalgamation of functions
 function flipPcCard() {
     if (pcMoves > 0){
         inRound = true
         const pcCard = computerDeck.pop()
         computerCardslot.appendChild(pcCard.getHTML())
-        playerMoves ++
-        pcMoves --
-        moves(pcCard, playerMoves, pcMoves)
+        normalCardMoves(pcCard, playerMoves, pcMoves)
+        markedCard(pcCard, playerMoves, pcMoves)
         updateDeckCount()
 
         if (isRoundWinner(playerCard, pcCard)){
@@ -106,13 +105,13 @@ function flipPcCard() {
         }
     }
 }
-
+// shows amount of remaining cards in deck
 function updateDeckCount() {
     computerDeckElement.innerHTML = computerDeck.numberOfCards
     playerDeckElement.innerHTML = playerDeck.numberOfCards
 }
-
-function moves (cardOne, amountOfMoves, myMoves){
+// movement in case of marked cards
+function markedCard (cardOne, amountOfMoves, myMoves){
     if (cardValueMap[cardOne.value] === 11){
         myMoves = 0
         amountOfMoves = 1
@@ -127,26 +126,40 @@ function moves (cardOne, amountOfMoves, myMoves){
         amountOfMoves = 4
     } else{}
 }
-
-
+// movement in case of normal cards
+function normalCardMoves (cardOne, plusMoves, minusMoves) {
+    if (cardValueMap[cardOne.value] === 2 || cardValueMap[cardOne.value] === 3 || cardValueMap[cardOne.value] === 4 || cardValueMap[cardOne.value] === 5 || cardValueMap[cardOne.value] === 6 || cardValueMap[cardOne.value] === 7 || cardValueMap[cardOne.value] === 8 || cardValueMap[cardOne.value] === 9 || cardValueMap[cardOne.value] === 10) {
+        plusMoves ++
+        minusMoves --
+    }
+}
+//declares a winner
 function isRoundWinner(cardOne, cardTwo) {
     return cardValueMap[cardOne.value] > cardValueMap[cardTwo.value]
 }
 
+// resets the game
 function isGameOver(deck) {
     return deck.numberOfCards === 0
 }
 
-function markedCard(){
-    
-}
+
 
 function doubleCard(){
 
 }
 
 /*todo: middle stack
-todo: turn based
+todo: turn based X
 todo: same card tap rule 
 todo: normal win mode 
 todo: new round button*/
+
+
+
+
+
+
+
+
+

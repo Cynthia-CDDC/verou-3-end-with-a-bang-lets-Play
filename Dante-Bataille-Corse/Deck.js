@@ -1,6 +1,6 @@
 const suits = ["♠", "♣", "♥", "♦"];
 const values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
-
+// makes the deck
 export default class Deck {
     constructor(cards = newDeck()) {
         this.cards = cards
@@ -17,7 +17,7 @@ export default class Deck {
     push(card) {
         this.cards.shift()
     }
-
+// shuffle deck
 shuffle() {
     for (let i = this.numberOfCards -1; i>0; i--){
         const newIndex = Math.floor(Math.random() * (i+1))
