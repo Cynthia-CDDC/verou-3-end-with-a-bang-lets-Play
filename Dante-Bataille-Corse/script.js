@@ -71,6 +71,7 @@ function flipPlayerCard() {
     playerCardSlot.appendChild(playerCard.getHTML())
     pcMoves ++
     playerMoves --
+    moves(playerCard, pcMoves, playerMoves)
     console.log(playerMoves)
     updateDeckCount()
 }
@@ -83,6 +84,7 @@ function flipPcCard() {
         computerCardslot.appendChild(pcCard.getHTML())
         playerMoves ++
         pcMoves --
+        moves(pcCard, playerMoves, pcMoves)
         updateDeckCount()
 
         if (isRoundWinner(playerCard, pcCard)){
@@ -110,6 +112,22 @@ function updateDeckCount() {
     playerDeckElement.innerHTML = playerDeck.numberOfCards
 }
 
+function moves (cardOne, amountOfMoves, myMoves){
+    if (cardValueMap[cardOne.value] === 11){
+        myMoves = 0
+        amountOfMoves = 1
+    }else if (cardValueMap[cardOne.value] === 12){
+        myMoves = 0
+        amountOfMoves = 2
+    }else if (cardValueMap[cardOne.value] === 13){
+        myMoves = 0
+        amountOfMoves = 3
+    }else if (cardValueMap[cardOne.value] === 14){
+        myMoves = 0
+        amountOfMoves = 4
+    } else{}
+}
+
 
 function isRoundWinner(cardOne, cardTwo) {
     return cardValueMap[cardOne.value] > cardValueMap[cardTwo.value]
@@ -121,6 +139,10 @@ function isGameOver(deck) {
 
 function markedCard(){
     
+}
+
+function doubleCard(){
+
 }
 
 /*todo: middle stack
