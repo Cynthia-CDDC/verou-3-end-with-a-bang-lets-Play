@@ -142,6 +142,6 @@ button.addEventListener('click', function() {
 // restart the game
 const restart = document.getElementById("restart")
 function reloadPage(){
-   location.reload();
+    location.reload()
 }
 restart.addEventListener("click", reloadPage)
