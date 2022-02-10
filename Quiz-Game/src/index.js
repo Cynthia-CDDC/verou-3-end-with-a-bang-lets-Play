@@ -1,11 +1,10 @@
-export const score = []
+import 'animate.css';
+export const score = [];
 const holder = document.getElementById("holder")
 const feedbackHolder = document.getElementById("resultHolder");
-var lineBreak = '</br>'; 
 import { getSum } from "./score.js"
 import {success} from "./feedback.js"
 import {fail} from "./feedback.js"
-import 'animate.css';
 
 let answerInput = document.createElement("input")
 answerInput.id = "answerInput"
@@ -99,16 +98,18 @@ function responseMsg(is_success, correct_answer) {
     
     if (is_success) {
         const successMsg = document.createElement("P");
+        successMsg.className = "animate__animated animate__slideInRight"
         successMsg.id = "successMsg"
         successMsg.id = "successDiv"
         feedbackDiv.appendChild(successMsg)
-        successMsg.innerHTML = `<img src="https://img.icons8.com/emoji/48/000000/nikita-clapping-hands-emoji.png"/>${lineBreak}<span>Good Job! </span>`
+        successMsg.innerHTML = `<img id="img" src="https://img.icons8.com/emoji/48/000000/nikita-clapping-hands-emoji.png"/><span>Good Job!</span>`
     } else {
         const failMsg = document.createElement("P");
+        failMsg.className = "animate__animated animate__slideInRight"
         failMsg.id = "failMsg"
         failMsg.id = "failDiv"
         feedbackDiv.appendChild(failMsg)
-       failMsg.innerHTML = `<img id="img" src="https://img.icons8.com/emoji/48/000000/thinking-face.png"/>${lineBreak}<span>NOT CORRECT!</span> The correct answer is <span>${correct_answer}</span>`
+       failMsg.innerHTML = `<img id="img" src="https://img.icons8.com/emoji/48/000000/thinking-face.png"/><span>NOT CORRECT!</span> The correct answer is <span>${correct_answer}.</span>`
     }
 }
 // check the Answer
@@ -137,3 +138,10 @@ button.addEventListener('click', function() {
     i++
     attachToElement()
 })
+
+// restart the game
+const restart = document.getElementById("restart")
+function reloadPage(){
+    location.reload()
+}
+restart.addEventListener("click", reloadPage)

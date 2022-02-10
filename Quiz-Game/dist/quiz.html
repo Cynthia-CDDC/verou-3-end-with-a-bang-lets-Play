@@ -11,6 +11,7 @@
     <title>Quiz-Game</title>
     <!--link script file-->
     <script type="module" src="./main.js"></script>
+   
 
 </head>
 <body>
@@ -18,24 +19,29 @@
    <main id="container">
        
     <section id="sub-container1">
-        <form id="myForm" name="myForm" action="{action page}">
+        <form id="myForm" name="myForm" action="{action page}" class="animate__animated animate__fadeInDown">
             <label>
-              <input class="form-check-input" type="radio" name="choice" value="film"> Film
+              <input class="form-check-input animate__animated animate__backInDown" type="radio" name="choice" value="film"> Film
             </label>
             <label>
-              <input class="form-check-input" type="radio" name="choice" value="music"> Music
+              <input class="form-check-input animate__animated animate__backInDown" type="radio" name="choice" value="music" > Music
             </label>
             <label>
-              <input class="form-check-input" type="radio" name="choice" value="video"> Video Game
+              <input class="form-check-input animate__animated animate__backInDown" type="radio" name="choice" value="video"> Video Game
             </label>
             <label>
-                <input class="form-check-input" type="radio" name="choice" value="board"> Board Game
+                <input class="form-check-input animate__animated animate__backInDown" type="radio" name="choice" value="board"> Board Game
               </label>
               <label>
-                <input class="form-check-input" type="radio" name="choice" value="general"> General Knowledge 
+                <input class="form-check-input animate__animated animate__backInDown" type="radio" name="choice" value="general"> General Knowledge 
               </label>
           </form>
-        <div id="holder"></div>
+        <div id="holder">
+          
+        </div>
+        <div>
+          <button id="restart">Restart</button>
+        </div>
     </section>
     <section id="sub-container2">
             <aside id="nav">
@@ -46,11 +52,14 @@
             </aside>
      </section>
   </main>
+  <footer>
+    @2022 Quiz-Game
+  </footer>
 
     <!--Select sound-->
-    <audio id="sound3" src="./sound/sounds_boom (1).wav"></audio>   
-    <audio id="sound2" src="./sound/sounds_kick.wav"></audio>
-    <audio id="sound1" src="./sound/sounds_tink (1).wav"></audio>
+    <audio id="sound3" src="../sound/sounds_boom (1).wav"></audio>   
+    <audio id="sound2" src="../sound/sounds_kick.wav"></audio>
+    <audio id="sound1" src="../sound/sounds_tink (1).wav"></audio>
     
 </body>
 </html>
