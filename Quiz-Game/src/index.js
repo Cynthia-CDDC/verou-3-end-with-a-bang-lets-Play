@@ -109,7 +109,7 @@ function responseMsg(is_success, correct_answer) {
         failMsg.id = "failMsg"
         failMsg.id = "failDiv"
         feedbackDiv.appendChild(failMsg)
-       failMsg.innerHTML = `<img id="img" src="https://img.icons8.com/emoji/48/000000/thinking-face.png"/><span>NOT CORRECT!</span> The correct answer is <span>${correct_answer}</span>`
+       failMsg.innerHTML = `<img id="img" src="https://img.icons8.com/emoji/48/000000/thinking-face.png"/><span>NOT CORRECT!</span> The correct answer is <span>${correct_answer}.</span>`
     }
 }
 // check the Answer
