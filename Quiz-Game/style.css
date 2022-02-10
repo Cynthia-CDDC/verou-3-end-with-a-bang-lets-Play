@@ -9,6 +9,7 @@
 }
 #sub-container1{
     margin: 5% 5% 5% 10%;
+    height: 100px;
 }
 #sub-container2{
     margin: 0% 0% 5% 20%;
@@ -31,6 +32,16 @@
     background-color: #edae49;
     border-radius: 5px;
     border: #edae49;
+   
+}
+#restart{
+    width: 30%;
+    height: 50px;
+    margin: 20% 20% 20% 30%;
+    background-color: #edae49;
+    border-radius: 5px;
+    border: #edae49;
+   
 }
 #successDiv{
     padding: 5%;
@@ -55,15 +66,17 @@
 }
 #successDiv{
  background-color: #40916c;
- height: 70px;
- text-align: center;
+ height: 100px;
  border-radius: 10px;
+ animation: slideInRight; 
+ animation-duration: 0.5s;
 }
 #failDiv {
     background-color: #d1495b;
-    height: 80px;
-    text-align: center;
+    height: 100px;
     border-radius: 10px;
+    animation: slideInRight; 
+    animation-duration: 0.5s;
 }
 #questionLine{
     font-size: 20px;
@@ -90,10 +103,34 @@ label{
 input{
     height: 20px;
     size: 20px;
-    vertical-align: middle;
+    vertical-align: middle;   
 }
 label:hover{
    color: white;
+}
+footer{
+    background-color: #edae49;
+    height: auto;
+    min-height: 100px;
+    margin-top: -2%;
+}
+form{
+    animation: slideInRight; 
+    animation-duration: 0.5s;
+}
+#img{
+    width: 30px;
+    margin-left: 40%;
+}
+
+@media only screen and (max-width: 800px){
+    #label{
+        font-size: 10px;
+    }
+    input{
+        height: 10px;
+        size: 10px;
+    }
 }
 
 
