@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body {
@@ -9,8 +10,29 @@ body {
     height: 100vh;
 }
 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    padding: 1vw 2vw 0vw 2vw;
+    margin: 1vw;
+    color: #ffcf9c;
+    font-family: "Quintessential", cursive;
+    text-shadow: 6px 5px 6px #15616d;
+}
+
 canvas {
     background-color: #ffcf9c;
     width: 100%;
     height: 100%;
+    position: absolute;
 }
