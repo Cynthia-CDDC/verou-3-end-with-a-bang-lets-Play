@@ -1,4 +1,4 @@
-import { score } from "./question.js";
+import { score } from "./index.js";
 
 export function getSum(){
     const scoreHolder = document.getElementById("scoreHolder")
