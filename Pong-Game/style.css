@@ -8,11 +8,11 @@
     --ball-color: #15616d;
 
     --hue-background: 140;
-    --saturation-background: 36%;
+    --saturation-background: 38%;
     --background-color: hsl(
         var(--hue-background),
         var(--saturation-background),
-        74%
+        70%
     );
 
     --font-playful: "Ole", cursive;
@@ -81,4 +81,8 @@ body {
 
 #player-score {
     text-align: right;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 770px) {
 }

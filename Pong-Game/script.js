@@ -103,15 +103,15 @@ document.addEventListener("mousemove", (e) => {
     playerPaddle.position = (e.y / window.innerHeight) * 85;
 });
 
-// Add eventlistener for player paddle (arrow keys)
-document.addEventListener("keydown", (e) => {
-    if (e.keyCode === 38) {
-        if (playerPaddle.position > 4) {
-            playerPaddle.position -= 5;
-        }
-    } else if (e.keyCode === 40) {
-        if (playerPaddle.position < 81) {
-            playerPaddle.position += 5;
-        }
-    }
-});
+// // Add eventlistener for player paddle (arrow keys)
+// document.addEventListener("keydown", (e) => {
+//     if (e.keyCode === 38) {
+//         if (playerPaddle.position > 4) {
+//             playerPaddle.position -= 5;
+//         }
+//     } else if (e.keyCode === 40) {
+//         if (playerPaddle.position < 81) {
+//             playerPaddle.position += 5;
+//         }
+//     }
+// });
