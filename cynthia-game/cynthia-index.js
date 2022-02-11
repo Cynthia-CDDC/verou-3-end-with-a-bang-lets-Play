@@ -48,11 +48,11 @@ const imagesShuffled = images.sort((a, b) => 0.5 - Math.random());
 console.log(imagesShuffled)
 
 const clickedItems = [];
-const equalItems = [];
 
 for (let i = 0; i < images.length; i++) {
     const card = document.createElement("div"); //create at least one element to use template literal.
     card.className = "card";
+    card.id = imagesShuffled[i].character;
     card.innerHTML = `
         <div class="inner-card" id="inner-card">
             <div class="card-front">
@@ -67,13 +67,14 @@ for (let i = 0; i < images.length; i++) {
     card.setAttribute("index", i);
     const container = document.querySelector(".container");
     container.appendChild(card);
-    console.log(i)
-
+    
     function imageClicked() {
-        clickedItems.push(card)
-        console.log(clickedItems) //works for item not for index (undifined)
         card.classList.toggle("flipCard");
         card.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
+
+        clickedItems.push(card)//after toggles for classList to be correct
+        console.log(clickedItems) //works for item not for index (undifined)
+
         if (clickedItems.length === 2) {
             conditions ()
         }
@@ -81,7 +82,7 @@ for (let i = 0; i < images.length; i++) {
             if (clickedItems[0].outerText !== clickedItems[1].outerText) {
                 //not the same
                 console.log('chicken')
-                //TODO: only second card toggles!!
+                
                 const myTimeout = setTimeout(() => {
                     for (let clickedItem of clickedItems) {
                         clickedItem.classList.toggle("flipCard");
@@ -89,7 +90,7 @@ for (let i = 0; i < images.length; i++) {
                         clickedItem.addEventListener('click', imageClicked, { once: true });
                     }
                     emptyArray () // ok   
-                }, 2000);
+                }, 1000); //TODO: fix issue: first card clicked becomes on second click the trigger to flip second card clicked
                 
             } else if(clickedItems[0].outerText === clickedItems[1].outerText) {
                 //the same
@@ -105,5 +106,3 @@ for (let i = 0; i < images.length; i++) {
     }
 card.addEventListener('click', imageClicked, { once: true })
 }
-//TODO: if hidden card has been clicked once, no more click possible!
-// 

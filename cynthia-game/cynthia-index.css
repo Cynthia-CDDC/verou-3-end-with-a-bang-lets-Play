@@ -2,6 +2,16 @@
     margin: 0;
     padding: 0;
 }
+body {
+    box-sizing: border-box;
+    background-color:green;
+    justify-items: center;
+}
+.presentation {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 .container {
     display: flex;
     flex-direction: row;
@@ -15,6 +25,7 @@
     height: 180px;
     perspective: 1000px;
     border-radius: 25px;
+    margin: 20px;
 }   
 .inner-card {
     position: relative;
