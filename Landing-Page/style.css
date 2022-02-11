@@ -78,3 +78,53 @@ canvas {
     height: 100%;
     position: absolute;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 770px) {
+    div.screenshots {
+        grid-template-columns: 1fr;
+        gap: 3vw;
+        width: auto;
+        height: auto;
+        margin-top: 5vh;
+    }
+
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+        padding: 1vw 2vw 0vw 2vw;
+        margin: 1vw;
+    }
+
+    img {
+        width: 30vw;
+        margin: 1vw;
+    }
+
+    #img-1:hover {
+        transform: none;
+    }
+
+    #img-2:hover {
+        transform: none;
+    }
+
+    #img-3:hover {
+        transform: none;
+    }
+
+    #img-4:hover {
+        transform: none;
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 425px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    img {
+        width: 65vw;
+    }
+}

@@ -82,7 +82,3 @@ body {
 #player-score {
     text-align: right;
 }
-
-/* Mobile responsiveness */
-@media (max-width: 770px) {
-}
