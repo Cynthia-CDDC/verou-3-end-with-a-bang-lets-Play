@@ -22,7 +22,7 @@
     box-sizing: border-box;
     overflow: hidden;
     user-select: none;
-    cursor: none;
+    cursor: crosshair;
 }
 
 body {
