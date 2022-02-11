@@ -6,6 +6,9 @@
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     height: 100vh;
 }
@@ -28,6 +31,45 @@ h1 {
     color: #ffcf9c;
     font-family: "Quintessential", cursive;
     text-shadow: 6px 5px 6px #15616d;
+}
+
+div.screenshots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
+    justify-items: center;
+    gap: 20px;
+    width: 900px;
+    height: 900px;
+    position: absolute;
+    margin-top: 100px;
+}
+
+img {
+    width: 350px;
+    margin: 60px 30px 60px 30px;
+    border-radius: 15px;
+    box-shadow: hsl(188, 68%, 15%) 0px 2px 4px;
+}
+
+#img-1:hover {
+    transform: rotate(1deg) scale(1.1);
+    transition: all 0.6s cubic-bezier(0.8, 1.8, 0.75, 0.75);
+}
+
+#img-2:hover {
+    transform: rotate(-1deg) scale(1.15);
+    transition: all 0.7s cubic-bezier(0.8, 1.8, 0.75, 0.75);
+}
+
+#img-3:hover {
+    transform: rotate(-1deg) scale(1.08);
+    transition: all 0.5s cubic-bezier(0.8, 1.8, 0.75, 0.75);
+}
+
+#img-4:hover {
+    transform: rotate(2deg) scale(1.15);
+    transition: all 0.6s cubic-bezier(0.8, 1.8, 0.75, 0.75);
 }
 
 canvas {
