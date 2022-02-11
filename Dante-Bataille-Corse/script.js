@@ -1,125 +1,108 @@
-import Deck from './deck.js'
-const cardValueMap = {
-    "2" : 2,
-    "3" : 3,
-    "4" : 4,
-    "5" : 5,
-    "6" : 6,
-    "7" : 7,
-    "8" : 8,
-    "9" : 9,
-    "10" : 10,
-    "J" : 11,
-    "Q" : 12,
-    "K" : 13,
-    "A" : 14
+import Deck from "./deck.js"
+
+const CARD_VALUE_MAP = {
+  "2": 2,
+  "3": 3,
+  "4": 4,
+  "5": 5,
+  "6": 6,
+  "7": 7,
+  "8": 8,
+  "9": 9,
+  "10": 10,
+  J: 11,
+  Q: 12,
+  K: 13,
+  A: 14
 }
 
-const computerCardslot = document.querySelector('.pccard-slot')
-const playerCardSlot = document.querySelector('.plcard-slot')
-const playerDeckElement = document.querySelector('.playerDeck')
-const computerDeckElement = document.querySelector('.pcDeck')
-const text = document.querySelector('.text')
-let playerMoves = 1
-let pcMoves = 0
+const computerCardSlot = document.querySelector(".computer-card-slot")
+const playerCardSlot = document.querySelector(".player-card-slot")
+const computerDeckElement = document.querySelector(".computer-deck")
+const playerDeckElement = document.querySelector(".player-deck")
+const text = document.querySelector(".text")
 
 let playerDeck, computerDeck, inRound, stop
 
-if (playerMoves > 0){ document.getElementById("plDeck").addEventListener('click', () => {
-    if (stop) {
-        startgame();
-        return;
-    }
-    if (inRound) {
-        cleanBeforeRound()
-    } else {
-        flipPlayerCard()
-        setTimeout(flipPcCard, 800);
-    }
-})
-}
+document.addEventListener("click", () => {
+  if (stop) {
+    startGame()
+    return
+  }
 
-startgame()
-function startgame() {
-    const deck = new Deck()
-    deck.shuffle()
-
-    const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
-    playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
-    computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
-    inRound = false
-    stop = false
-
+  if (inRound) {
     cleanBeforeRound()
+  } else {
+    flipCards()
+  }
+})
+
+startGame()
+function startGame() {
+  const deck = new Deck()
+  deck.shuffle()
+
+  const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
+  playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
+  computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
+  inRound = false
+  stop = false
+
+  cleanBeforeRound()
 }
 
 function cleanBeforeRound() {
-    inRound = false
-    computerCardslot.innerHTML = ''
-    playerCardSlot.innerHTML = ''
-    text.innertext = ''
+  inRound = false
+  computerCardSlot.innerHTML = ""
+  playerCardSlot.innerHTML = ""
+  text.innerText = ""
 
-    updateDeckCount()
+  updateDeckCount()
 }
 
-function flipPlayerCard() {
-    inRound = true
-    const playerCard = playerDeck.pop()
-    playerCardSlot.appendChild(playerCard.getHTML())
-    pcMoves ++
-    playerMoves --
-    console.log(playerMoves)
-    updateDeckCount()
-}
+function flipCards() {
+  inRound = true
 
+  const playerCard = playerDeck.pop()
+  const computerCard = computerDeck.pop()
 
-function flipPcCard() {
-    inRound = true
-    const pcCard = computerDeck.pop()
-    computerCardslot.appendChild(pcCard.getHTML())
-    playerMoves ++
-    pcMoves --
-    updateDeckCount()
+  playerCardSlot.appendChild(playerCard.getHTML())
+  computerCardSlot.appendChild(computerCard.getHTML())
 
-    if (isRoundWinner(playerCard, pcCard)){
-        text.innertext("You won this round")
-        playerDeck.push(playerCard)
-        playerDeck.push(pcCard)
-    } else if (isRoundWinner (pcCard, playerCard)) {
-        text.innertext("You lost this Round")
-        computerDeck.push(playerCard)
-        computerDeck.push(pcCard)
-    } 
+  updateDeckCount()
 
-    if (isGameOver(playerDeck)) {
-        text.innertext = "You lose!!"
-        stop = true
-    } else if (isGameOver(computerDeck)) {
-        text.innertext = "You Win!!!"
-        stop = true
-    }
+  if (isRoundWinner(playerCard, computerCard)) {
+    text.innerText = "Win"
+    playerDeck.push(playerCard)
+    playerDeck.push(computerCard)
+  } else if (isRoundWinner(computerCard, playerCard)) {
+    text.innerText = "Lose"
+    computerDeck.push(playerCard)
+    computerDeck.push(computerCard)
+  } else {
+    text.innerText = "Draw"
+    playerDeck.push(playerCard)
+    computerDeck.push(computerCard)
+  }
+
+  if (isGameOver(playerDeck)) {
+    text.innerText = "You Lose!!"
+    stop = true
+  } else if (isGameOver(computerDeck)) {
+    text.innerText = "You Win!!"
+    stop = true
+  }
 }
 
 function updateDeckCount() {
-    computerDeckElement.innerHTML = computerDeck.numberOfCards
-    playerDeckElement.innerHTML = playerDeck.numberOfCards
+  computerDeckElement.innerText = computerDeck.numberOfCards
+  playerDeckElement.innerText = playerDeck.numberOfCards
 }
 
-
 function isRoundWinner(cardOne, cardTwo) {
-    return cardValueMap[cardOne.value] > cardValueMap[cardTwo.value]
+  return CARD_VALUE_MAP[cardOne.value] > CARD_VALUE_MAP[cardTwo.value]
 }
 
 function isGameOver(deck) {
-    return deck.numberOfCards === 0
+  return deck.numberOfCards === 0
 }
-
-function markedCard(){
-
-}
-
-/*todo: middle stack
-todo: turn based
-todo: same card tap rule 
-todo: normal win mode 
-todo: new round button*/
