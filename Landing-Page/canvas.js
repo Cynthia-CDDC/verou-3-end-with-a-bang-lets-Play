@@ -71,15 +71,15 @@ class Circle {
             let hoverAreaY = mouse.y - this.y;
 
             if (
-                hoverAreaX < 35 &&
-                hoverAreaY < 35 &&
-                hoverAreaX > -35 &&
-                hoverAreaY > -35
+                hoverAreaX < 30 &&
+                hoverAreaY < 30 &&
+                hoverAreaX > -30 &&
+                hoverAreaY > -30
             ) {
                 this.dx *= 1.01;
                 this.dy *= 1.01;
                 this.radius += 0.2;
-                this.color = "hsl(325, 25%, 40%)";
+                this.color = "hsl(325, 25%, 38%)";
             }
 
             this.draw();
