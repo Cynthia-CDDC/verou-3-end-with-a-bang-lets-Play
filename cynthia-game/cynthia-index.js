@@ -49,20 +49,6 @@ console.log(imagesShuffled)
 
 const clickedItems = [];
 
-const toggleCard = (card) => {
-    card.classList.toggle("flipCard");
-
-    console.log(card)
-    console.log(card.children);// = inner-card
-    console.log(card.children[0])// array with 1 item = html element
-
-    card.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
-    if (clickedItems.length <= 2){
-        
-    }
-    
-} 
-
 for (let i = 0; i < images.length; i++) {
     const card = document.createElement("div"); //create at least one element to use template literal.
     card.className = "card";
@@ -83,32 +69,38 @@ for (let i = 0; i < images.length; i++) {
     container.appendChild(card);
     console.log(i)
 
-    function imageClicked(event) {
-        console.log(card)
-        toggleCard(card)
-        if (clickedItems.length == 2 && clickedItems[0] !== clickedItems[1]) {
-                //not the same
-            console.log(clickedItems)
-            
-            for (let i = 0; i < clickedItems.length; i++) {
-                toggleCard(clickedItems[i])
-                console.log(clickedItems) 
-            }
-            console.log('kow')
-            // - if the two img are not the same the img dissapears after a few seconds and clicks are possible again
-        } else if (clickedItems.length == 2 && clickedItems[0] == clickedItems[1]) {
-            //the same
-            console.log(clickedItems)
-            console.log('horse')
-        } else {
-            clickedItems.push(card)
-            console.log(clickedItems)
-            console.log('bull')
+    function imageClicked() {
+        clickedItems.push(card)
+        console.log(clickedItems) //works for item not for index (undifined)
+        card.classList.toggle("flipCard");
+        card.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
+        if (clickedItems.length === 2) {
+            conditions ()
         }
-        
+        //TODO: both conditions console.log: ok.
+        function conditions () {
+            if (clickedItems[0].outerText !== clickedItems[1].outerText) {
+                //not the same
+                console.log('chicken')
+                //TODO: only second card toggles!!
+                card.classList.toggle("flipCard");
+                card.children[0].classList.toggle("inner-card"); 
+                emptyArray () // ok   
+            } else if(clickedItems[0].outerText === clickedItems[1].outerText) {
+                //the same
+                //cards stay visible: ok.
+                console.log('horse')
+                emptyArray ()// ok
+            }
+            function emptyArray () {
+                clickedItems.length = 0;
+            }
+        }
     }
-    card.addEventListener('click', imageClicked, { once: true })
+card.addEventListener('click', imageClicked, { once: true })
 }
+
+// (clickedItems.length == 2 && clickedItems[0] == clickedItems[1])
 
 //TODO: // - when two cards are clicked:
             // - other cards no longer clicable until after comparison was made between the two 

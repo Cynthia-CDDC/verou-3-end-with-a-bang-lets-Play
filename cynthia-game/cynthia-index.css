@@ -23,13 +23,8 @@
     text-align: center;
     transition: all 0.8s ease; /*timelaps to complete the transformation*/
     transform-style: preserve-3d;/*specifies the position of childelement to preserve its 3D position*/
-}
-
-/*will be toggle*/
-.inner-card {
     transform: rotateY(180deg);
 }
-
 /*new class created in JS for the .inner-card to allow toggle event to execute*/
 .flipCard {
     transform: rotateY(180deg);
@@ -37,6 +32,7 @@
 }
 .card-front{
     transform: rotateY(180deg);
+    transition: all 0.8s ease;
 }
 .card-front {
     position: absolute;
@@ -45,6 +41,7 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transform: rotateY(180deg);
+    transition: all 0.8s ease;
 }
 .card-back {
     position: absolute;
@@ -52,12 +49,11 @@
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    transition: all 0.8s ease;
 }
 /* with .card-back transform active standard shows front image */
 
-.card-head {
 
-}
 .card-body {
     text-align: center;
 }
