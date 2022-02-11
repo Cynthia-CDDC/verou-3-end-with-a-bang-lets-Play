@@ -43,66 +43,70 @@ const images = [
         character: "White Queen",
     },
 ];
+
 const imagesShuffled = images.sort((a, b) => 0.5 - Math.random());
 console.log(imagesShuffled)
 
-for (let image of imagesShuffled) {
-    console.log(image)
-    const card = document.createElement('div');//create at least one element to use template literal.
+const clickedItems = [];
+
+for (let i = 0; i < images.length; i++) {
+    const card = document.createElement("div"); //create at least one element to use template literal.
     card.className = "card";
+    card.id = imagesShuffled[i].character;
     card.innerHTML = `
         <div class="inner-card" id="inner-card">
             <div class="card-front">
                 <img class="front-img" src="./cynthia-images/cheshire-cat.jpg" alt="Cheshire Cat">
             </div>
             <div class="card-back">
-                <img class="card-head" src= ${image.img}>
-                <h3 class="card-body"> ${image.character}</h3>
+                <img class="card-head" src= ${imagesShuffled[i].img}>
+                <h3 class="card-body"> ${imagesShuffled[i].character}</h3>
             </div>
         </div>`;
-
-    card.setAttribute('index', image)
-    card.addEventListener('click', imageClicked(image))
-    console.log(card)
-    const container = document.querySelector('.container');
-    container.appendChild(card);   
-}
-
-function imageClicked(index) {
-    console.log(this) //this = window
-    return function(){
-        console.log(index)
-        console.log(index.character) //does gives characters name of the clicked card
-        //would need index nr. instead of character name
-
-        const clickedCard = document.querySelector(".card");
+    // Add index attribute
+    card.setAttribute("index", i);
+    const container = document.querySelector(".container");
+    container.appendChild(card);
+    
+    function imageClicked(event) {
+        const clickedCard = event.currentTarget;
+        console.log('----')
+        console.log(event.target)
+        console.log(event.currentTarget)
         clickedCard.classList.toggle("flipCard");
-        console.log('test eventlistener ok')
-        console.log(clickedCard)
+        clickedCard.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
 
-        // click on whatever card it is allways the first that flips, on second random click the second card flips, ...
-        const innerCard = document.querySelector(".inner-card")
-        innerCard.classList.toggle("inner-card");
-        console.log(innerCard)
+        clickedItems.push(clickedCard)//after toggles for classList to be correct
+        console.log(clickedItems) //works for item not for index (undifined)
+
+        if (clickedItems.length === 2) {
+            conditions ()
+        }
+        function conditions () {
+            if (clickedItems[0].outerText !== clickedItems[1].outerText) {
+                //not the same
+                console.log('chicken')
+                
+                const myTimeout = setTimeout(() => {
+                    for (let clickedItem of clickedItems) {
+                        clickedItem.classList.toggle("flipCard");
+                        clickedItem.children[0].classList.toggle("inner-card");
+                        clickedItem.addEventListener('click', imageClicked, { once: true });
+                    }
+                    emptyArray () // ok   
+                }, 1000);
+                
+            } else if(clickedItems[0].outerText === clickedItems[1].outerText) {
+                //the same
+                //cards stay visible: ok.
+                console.log('horse')
+                emptyArray ()// ok
+            }
+            function emptyArray () {
+                clickedItems.length = 0;
+                console.log(clickedItems)
+            }
+        }
     }
+card.addEventListener('click', imageClicked, { once: true })
 }
-
-// const clickedCard = document.querySelector(".card");
-//         clickedCard.classList.toggle("flipCard");
-//         console.log('test eventlistener ok')
-//         console.log(clickedCard)
-//         innerCard.classList.toggle("inner-card");
-//         console.log(innerCard)
-// when card is clicked: flip the card
-
-//TODO: create conditions of the game: see steps further down in doc
-        // - if card is clicked: 
-        // - if two cards are selected no more clicks possible (add message to player)
-        // - compare images:
-            // - if the two img are the same they stay visible and two clicks are possible again (add message to player)
-            // - if the two img are not the same the img dissapears after a few seconds and clicks are possible again (add message to player)
-            // - if all the img are visible the game is done (add message to player)
-            // - play again button to start new session
-
-//TODO: create play again button
-//TODO: create event listener for button on click
