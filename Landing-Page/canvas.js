@@ -50,15 +50,15 @@ class Circle {
         this.update = () => {
             // Add wall bounce
             if (
-                this.x + this.radius * 2 > window.innerWidth ||
-                this.x - this.radius * 2 < 0
+                this.x + this.radius > window.innerWidth ||
+                this.x - this.radius < 0
             ) {
                 this.dx = -this.dx;
             }
 
             if (
-                this.y + this.radius * 2 > window.innerHeight ||
-                this.y - this.radius * 2 < 0
+                this.y + this.radius > window.innerHeight ||
+                this.y - this.radius < 0
             ) {
                 this.dy = -this.dy;
             }
