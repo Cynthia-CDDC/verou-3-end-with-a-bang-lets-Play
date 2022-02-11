@@ -49,8 +49,8 @@ body {
     perspective: 1000px;
     border-style: ridge;
     border-width: 10px;
-    border-color: rgb(59, 155, 59);
-    background-color: rgb(0, 128, 0);
+    border-color: rgb(91, 223, 153);
+    background-color: rgb(91, 223, 153);
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
     margin: 20px;
@@ -80,7 +80,7 @@ body {
     transition: all 0.8s ease;
 }
 .card-back {
-    transform: scale(-1,1);
+    transform: scale(-1,1);/*to keep the image from mirroring when flipped */
     position: absolute;
     width: 100%;
     height: 100%;
