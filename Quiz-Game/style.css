@@ -40,7 +40,7 @@ body{
 #restart{
     width: 30%;
     height: 50px;
-    margin: 20% 20% 20% 30%;
+    margin: 10% 20% 20% 15%;
     background-color: #edae49;
     border-radius: 5px;
     border: #edae49;
@@ -84,8 +84,7 @@ body{
     animation-duration: 0.5s;
 }
 #questionLine{
-    font-size: 20px;
-    color: #edae49;
+    font-size: 30px;
     margin-top: 5%;
     margin-left: 15%;
     font-weight: bold;
@@ -125,6 +124,7 @@ footer{
     color: #edae49;
 }
 form{
+    margin-left: 15%;
     animation: slideInRight; 
     animation-duration: 0.5s;
 }

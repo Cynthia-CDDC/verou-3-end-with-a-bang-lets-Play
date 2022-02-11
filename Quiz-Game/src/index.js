@@ -142,6 +142,14 @@ button.addEventListener('click', function() {
 // restart the game
 const restart = document.getElementById("restart")
 function reloadPage(){
-    location.reload()
+    window.location = document.URL
 }
 restart.addEventListener("click", reloadPage)
+
+window.addEventListener("load", event => {
+    document.getElementById("restart").onclick = function() {
+        location.assign(location.href);        // or, use `location.assign(location)`
+    }
+});
+
+
