@@ -68,11 +68,15 @@ for (let i = 0; i < images.length; i++) {
     const container = document.querySelector(".container");
     container.appendChild(card);
     
-    function imageClicked() {
-        card.classList.toggle("flipCard");
-        card.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
+    function imageClicked(event) {
+        const clickedCard = event.currentTarget;
+        console.log('----')
+        console.log(event.target)
+        console.log(event.currentTarget)
+        clickedCard.classList.toggle("flipCard");
+        clickedCard.children[0].classList.toggle("inner-card");//change the class of the cards childNode to trigger other css
 
-        clickedItems.push(card)//after toggles for classList to be correct
+        clickedItems.push(clickedCard)//after toggles for classList to be correct
         console.log(clickedItems) //works for item not for index (undifined)
 
         if (clickedItems.length === 2) {
