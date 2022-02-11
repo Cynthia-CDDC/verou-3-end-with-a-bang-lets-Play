@@ -91,7 +91,7 @@ class Circle {
 let circleArray = [];
 
 // Create loop for creating new Circle objects
-for (let i = 0; i < 5000; i++) {
+for (let i = 0; i < 3500; i++) {
     // Create variable for radius
     let radius = Math.random() * 30;
     // Create variable outside of function for x-axis and y-axis
