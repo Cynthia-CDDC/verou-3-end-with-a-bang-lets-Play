@@ -17,6 +17,8 @@ body {
     flex-wrap: wrap;
     width: 80vw;
     justify-items: center;
+    margin-right: 0px;
+    margin: auto;
 }
 .card {
     background-color: green;
@@ -37,10 +39,6 @@ body {
 }
 /*new class created in JS for the .inner-card to allow toggle event to execute*/
 .flipCard {
-    transform: rotateY(180deg);
-    transition: all 0.8s ease;
-}
-.card-front{
     transform: rotateY(180deg);
     transition: all 0.8s ease;
 }
@@ -69,7 +67,9 @@ body {
 }
 .front-img {
     width: 200px;
-    height: 150px;
+    height: 180px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 img {
     border-top-left-radius: 25px;

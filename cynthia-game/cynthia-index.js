@@ -94,7 +94,7 @@ for (let i = 0; i < images.length; i++) {
                         clickedItem.addEventListener('click', imageClicked, { once: true });
                     }
                     emptyArray () // ok   
-                }, 1000); //TODO: fix issue: first card clicked becomes on second click the trigger to flip second card clicked
+                }, 1000);
                 
             } else if(clickedItems[0].outerText === clickedItems[1].outerText) {
                 //the same
