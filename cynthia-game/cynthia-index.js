@@ -48,6 +48,7 @@ const imagesShuffled = images.sort((a, b) => 0.5 - Math.random());
 console.log(imagesShuffled)
 
 const clickedItems = [];
+const equalItems = [];
 
 for (let i = 0; i < images.length; i++) {
     const card = document.createElement("div"); //create at least one element to use template literal.
@@ -62,7 +63,6 @@ for (let i = 0; i < images.length; i++) {
                 <h3 class="card-body"> ${imagesShuffled[i].character}</h3>
             </div>
         </div>`;
-
     // Add index attribute
     card.setAttribute("index", i);
     const container = document.querySelector(".container");
@@ -77,15 +77,20 @@ for (let i = 0; i < images.length; i++) {
         if (clickedItems.length === 2) {
             conditions ()
         }
-        //TODO: both conditions console.log: ok.
         function conditions () {
             if (clickedItems[0].outerText !== clickedItems[1].outerText) {
                 //not the same
                 console.log('chicken')
                 //TODO: only second card toggles!!
-                card.classList.toggle("flipCard");
-                card.children[0].classList.toggle("inner-card"); 
-                emptyArray () // ok   
+                const myTimeout = setTimeout(() => {
+                    for (let clickedItem of clickedItems) {
+                        clickedItem.classList.toggle("flipCard");
+                        clickedItem.children[0].classList.toggle("inner-card");
+                        clickedItem.addEventListener('click', imageClicked, { once: true });
+                    }
+                    emptyArray () // ok   
+                }, 2000);
+                
             } else if(clickedItems[0].outerText === clickedItems[1].outerText) {
                 //the same
                 //cards stay visible: ok.
@@ -94,17 +99,11 @@ for (let i = 0; i < images.length; i++) {
             }
             function emptyArray () {
                 clickedItems.length = 0;
+                console.log(clickedItems)
             }
         }
     }
 card.addEventListener('click', imageClicked, { once: true })
 }
-
-// (clickedItems.length == 2 && clickedItems[0] == clickedItems[1])
-
-//TODO: // - when two cards are clicked:
-            // - other cards no longer clicable until after comparison was made between the two 
-        // - compare images:
-            // - if the two img are the same they stay visible and clicks are possible again (add message to player)
-            
-            // - if all the img are visible the game is done
+//TODO: if hidden card has been clicked once, no more click possible!
+// 
