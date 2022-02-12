@@ -30,6 +30,11 @@ body {
     font-weight: bolder;
     opacity: 100%;
 }
+.score {
+    font-size: x-large;
+    font-weight: bold;
+    color: rgba(223, 16, 68, 0.87);
+}
 .container {
     display: flex;
     flex-direction: row;
@@ -100,5 +105,14 @@ body {
 }
 .card-head {
     border-top-right-radius: 25px;
+}
+.playAgain-button{
+    border-color: rgba(223, 16, 68, 0.87);
+    border-radius: 18px;
+    font-size: x-large;
+    line-height: 40px;
+    width: 50%;
+    color: rgb(91, 223, 153);
+    background-color: rgb(29, 28, 28);
 }
 
